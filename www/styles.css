@@ -1,0 +1,6 @@
+/* Custom CSS instructions */
+
+.black-border-card {
+  border: 1px solid black;
+  border-radius: 5px;
+}

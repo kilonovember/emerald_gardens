@@ -1,0 +1,13 @@
+name: emerald_gardens
+title: emerald_gardens
+username: kilonovember
+account: kilonovember
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 12345495
+bundleId: 11039895
+url: https://kilonovember.shinyapps.io/emerald_gardens/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: .dockerignore

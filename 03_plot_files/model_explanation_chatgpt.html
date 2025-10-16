@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GLM Model Summary</title>
+    <style>
+        #modal-content body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+        #modal-content h2 {
+            color: #2c3e50;
+        }
+        #modal-content h3 {
+            color: #34495e;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 5px;
+        }
+        #modal-content code {
+            background-color: #f4f4f4;
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        #modal-content .highlight {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-left: 4px solid #3498db;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>GLM Model Summary</h2>
+
+    <p>This model summary describes a <strong>generalized linear model (GLM)</strong> used to predict the logarithm of a property's "just" value based on several property characteristics.</p>
+
+    <h3>1. Model Specification (Call):</h3>
+
+    <pre>
+glm(formula = log_just ~ log_lot_size + log_living_area + has_pool +
+    bathrooms + half_baths + eff_yr_built,
+    data = make_lm_data_tbl() %>% mutate(
+        log_just = log(just),
+        log_lot_size = log(lot_size),
+        log_living_area = log(living_area)
+    ))
+    </pre>
+
+    <ul>
+        <li>This indicates a <strong>GLM</strong> was used.</li>
+        <li>The formula <code>log_just ~ ...</code> defines the model:</li>
+        <ul>
+            <li>The dependent variable (response) is the logarithm of the "just" value (<code>log_just</code>).</li>
+            <li>The independent variables (predictors) include:
+                <ul>
+                    <li>Logarithm of lot size (<code>log_lot_size</code>)</li>
+                    <li>Logarithm of living area (<code>log_living_area</code>)</li>
+                    <li>Presence of a pool (<code>has_poolTRUE</code>)</li>
+                    <li>Number of full bathrooms (<code>bathrooms</code>)</li>
+                    <li>Number of half bathrooms (<code>half_baths</code>)</li>
+                    <li>Effective year built (<code>eff_yr_built</code>)</li>
+                </ul>
+            </li>
+        </ul>
+        <li>The data source is <code>make_lm_data_tbl()</code>, with log transformations applied to certain variables.</li>
+        <li>The Gaussian family is used, indicating a linear regression on log-transformed data.</li>
+    </ul>
+
+    <div class="highlight">
+        <h3>Why log-transformed values?</h3>
+        <p>Lot size and living area have much larger values compared to bathroom counts. Without log transformations, these large values (ranging from 9,168 to 12,446 sq.ft. for lot size and 1,771 to 3,740 sq.ft. for living area) would dominate the model, reducing the influence of the smaller-scale numeric factors like bathroom counts.</p>
+    </div>
+
+    <h3>2. Coefficients:</h3>
+
+    <p>This section presents the estimated coefficients for each predictor:</p>
+
+    <ul>
+        <li><strong>Estimate:</strong> The estimated effect of each predictor on the log of the "just" value.</li>
+        <li><strong>Std. Error:</strong> The precision of the estimate.</li>
+        <li><strong>t value:</strong> The test statistic for significance.</li>
+        <li><strong>Pr(&gt;|t|):</strong> The p-value indicating statistical significance.</li>
+    </ul>
+
+    <h4>Significance Codes:</h4>
+    <ul>
+        <li><code>***</code>: Highly significant (p &lt; 0.001)</li>
+        <li><code>**</code>: Very significant (p &lt; 0.01)</li>
+        <li><code>*</code>: Significant (p &lt; 0.05)</li>
+    </ul>
+
+    <h4>Interpretation of Coefficients:</h4>
+
+    <ul>
+        <li><strong>(Intercept):</strong> The predicted log of the "just" value when all predictors are zero.</li>
+        <li><strong>log_lot_size:</strong> A 1-unit increase in log lot size increases log "just" value by <code>0.2482</code>.</li>
+        <li><strong>log_living_area:</strong> A 1-unit increase in log living area increases log "just" value by <code>0.3916</code>.</li>
+        <li><strong>has_poolTRUE:</strong> Having a pool increases log "just" value by <code>0.1045</code>.</li>
+        <li><strong>bathrooms:</strong> Each additional full bathroom increases log "just" value by <code>0.03646</code>.</li>
+        <li><strong>half_baths:</strong> Each additional half bathroom increases log "just" value by <code>0.03105</code>.</li>
+        <li><strong>eff_yr_built:</strong> Each additional year in effective year built increases log "just" value by <code>0.013</code>.</li>
+    </ul>
+
+    <p>All predictors are statistically significant (p &lt; 0.001), except half baths, which is still significant at p &lt; 0.05.</p>
+
+    <h3>3. Model Fit:</h3>
+
+    <ul>
+        <li><strong>Dispersion parameter for Gaussian family:</strong> <code>0.001510157</code> (indicates model error variance).</li>
+        <li><strong>Null deviance:</strong> Total variation in the dependent variable with only an intercept.</li>
+        <li><strong>Residual deviance:</strong> Variation in the dependent variable not explained by the model.</li>
+        <li><strong>AIC (Akaike Information Criterion):</strong> A lower AIC indicates a better-fitting model.</li>
+    </ul>
+
+    <div class="highlight">
+        <p>The residual deviance is much lower than the null deviance, suggesting a strong model fit. The low AIC further supports this.</p>
+    </div>
+
+    <h3>4. Fisher Scoring Iterations:</h3>
+
+    <p><strong>Number of Fisher Scoring iterations: 2</strong></p>
+    <p>This indicates that the model converged in two iterations.</p>
+
+    <h3>Summary:</h3>
+
+    <p>This model effectively predicts the logarithm of the "just" value of properties based on:</p>
+
+    <ul>
+        <li>Lot size</li>
+        <li>Living area</li>
+        <li>Presence of a pool</li>
+        <li>Number of bathrooms</li>
+        <li>Effective year built</li>
+    </ul>
+
+    <p>All predictor variables show statistically significant relationships with the log "just" value. The model demonstrates a good fit to the data.</p>
+
+</body>
+</html>

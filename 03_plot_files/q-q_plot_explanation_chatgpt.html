@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q-Q Plot Explanation</title>
+    <style>
+        #modal-content body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+        #modal-content h2 {
+            color: #2c3e50;
+        }
+        #modal-content .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        #modal-content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            padding: 5px;
+            background-color: #f9f9f9;
+        }
+        #modal-content .key-points {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-left: 4px solid #3498db;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Q-Q Plot: Assessing Normality of Residuals</h2>
+
+    <p>A <strong>Q-Q (Quantile-Quantile) plot</strong> is a graphical tool used to assess whether a dataset follows a particular theoretical distribution. In this case, the Q-Q plot compares the residuals from a regression model to a normal distribution.</p>
+
+    <h3>Interpreting the Plot:</h3>
+
+    <ul>
+        <li>The <strong>x-axis</strong> represents the theoretical quantiles from a standard normal distribution.</li>
+        <li>The <strong>y-axis</strong> represents the sample quantiles of the residuals.</li>
+        <li>The <strong>red diagonal line</strong> represents the expected values if the residuals were perfectly normally distributed.</li>
+        <li>The <strong>black dots</strong> represent the actual residuals.</li>
+    </ul>
+
+    <div class="key-points">
+        <h3>Key Observations:</h3>
+        <ul>
+            <li>Most points fall along the red line, indicating that the residuals are approximately normal.</li>
+            <li>Slight deviations from the line at the tails suggest mild departures from normality.</li>
+            <li>If the residuals followed a perfect normal distribution, all points would lie exactly on the red line.</li>
+            <li>Outliers or heavy tails (points deviating significantly from the line) may indicate skewness or kurtosis in the data.</li>
+        </ul>
+    </div>
+
+    <p>Overall, this Q-Q plot suggests that the model residuals are fairly normal, though there may be some deviation at the extremes.</p>
+
+</body>
+</html>

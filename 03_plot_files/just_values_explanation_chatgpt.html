@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Valuation Overview</title>
+    <style>
+        #modal-content body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+        #modal-content h2 {
+            color: #2c3e50;
+        }
+        #modal-content ul {
+            margin-top: 0;
+            padding-left: 20px;
+        }
+        #modal-content .example {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-left: 4px solid #3498db;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Understanding Fair Market Value in Sarasota County</h2>
+
+    <p>Each January, the Sarasota County Property Appraiser estimates the <strong>fair market value</strong> of every parcel in the county. In this context, "fair market value" refers to a conservative estimate, typically 5% to 10% lower than the expected sale price of a property.</p>
+
+    <p>Another key component in this calculation is the <strong>cost of sale</strong>, which includes expenses such as broker commissions, title searches, and document preparation. Based on historical litigation, the Property Appraiser applies a 15% reduction to account for these costs.</p>
+
+    <div class="example">
+        <p><strong>Example Calculation:</strong> If a house sells for $500,000 in an arms-length transaction, the "just value" is computed as follows:</p>
+        <ul>
+            <li><strong>Sale Price:</strong> $500,000</li>
+            <li><strong>Conservative Estimate (-10%):</strong> -$50,000</li>
+            <li><strong>Cost of Sale (-15%):</strong> -$75,000</li>
+            <li><strong>Just Value:</strong> <strong>$375,000</strong></li>
+        </ul>
+    </div>
+
+    <h2>Scatter Plot Analysis: Emerald Gardens</h2>
+
+    <p>The scatter plot visualizes 127 houses in Emerald Gardens, with each dot representing a property. Expected "just" values are calculated using the model displayed below the subtitle. This model is not the one used by the Property Appraiser, but it does capture the important factors in valuing a house in Emerald Gardens. The R-Squared value is 0.8694447, meaning that the model captures nearly 87% of the variance between the recorded Just Value and the predicted Just Value.</p>
+
+    <ul>
+        <li>Hover over a dot to see the recorded "just" value and the model’s predicted value.</li>
+        <li>The red line represents the average estimated "just" value.</li>
+        <li>The dashed blue lines indicate two standard deviations above and below the mean, capturing 95% of the data points.</li>
+        <li>Dots above the upper blue line have higher-than-expected "Just" values.</li>
+        <li>Dots below the lower blue line have lower-than-expected "Just" values.</li>
+    </ul>
+
+    <h2>Model Factors</h2>
+
+    <p>The model estimates "Just" value based on the following factors:</p>
+    <ul>
+        <li>Lot size</li>
+        <li>Building size</li>
+        <li>Presence of a pool</li>
+        <li>Number of bathrooms</li>
+        <li>Number of half-bathrooms</li>
+    </ul>
+
+    <p>This model was selected from several alternatives based on the statistical significance of its variables.</p>
+
+    <p>A summary of the model is displayed at the bottom of the page. For more details on interpreting the model summary, click the <strong>"Model Summary"</strong> button.</p>
+
+</body>
+</html>

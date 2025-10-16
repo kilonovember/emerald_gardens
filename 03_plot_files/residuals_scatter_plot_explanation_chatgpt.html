@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Residual Plot Explanation</title>
+    <style>
+        #modal-content body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+        #modal-content h2 {
+            color: #2c3e50;
+        }
+        #modal-content .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        #modal-content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            padding: 5px;
+            background-color: #f9f9f9;
+        }
+        #modal-content .key-points {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-left: 4px solid #3498db;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Residual Plot: Evaluating Model Fit</h2>
+
+    <p>A <strong>residual plot</strong> is used to assess the adequacy of a regression model by visualizing the residuals (differences between observed and predicted values) against the fitted values.</p>
+
+    <h3>Interpreting the Plot:</h3>
+
+    <ul>
+        <li>The <strong>x-axis</strong> represents the fitted (predicted) values.</li>
+        <li>The <strong>y-axis</strong> represents the residuals (errors).</li>
+        <li>The <strong>black dots</strong> represent individual residuals for each observation.</li>
+        <li>The <strong>red dashed line</strong> is the reference line at zero, indicating no residual error.</li>
+    </ul>
+
+    <div class="key-points">
+        <h3>Key Observations:</h3>
+        <ul>
+            <li>Residuals appear to be randomly scattered around the red dashed line, suggesting no obvious pattern.</li>
+            <li>If the residuals exhibit a clear pattern (e.g., curvature or funnel shape), this may indicate model misspecification or heteroscedasticity.</li>
+            <li>The residuals seem to have a roughly constant variance, which supports the assumption of homoscedasticity.</li>
+            <li>A few outliers are present, but they do not appear to dominate the overall trend.</li>
+        </ul>
+    </div>
+
+    <p>Overall, this residual plot suggests that the model captures the relationship between the predictors and the response variable well, with no major violations of regression assumptions.</p>
+
+</body>
+</html>
