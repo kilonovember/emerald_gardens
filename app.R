@@ -40,11 +40,6 @@ interactive_sales_by_year_plot <- read_rds("03_plot_files/interactive_sales_by_y
 property_info_pages_tbl <- read_rds("02_processed_data/property_info_pages_tbl.rds")
 building_permits_mapping_tbl <- read_rds("02_processed_data/building_permits_mapping_tbl.rds")
 
-# Load the property details DT table ----
-
-eg_DT_ssf <- read_rds("02_processed_data/eg_gt_ssf.rds") %>%
-    mutate(RowID = row_number(), .before = everything())
-
 # Load pop-up window functions
 source("00_R_scripts/00.02_transform_data/pop_up_tables.R")
 source("00_R_scripts/00.02_transform_data/property_details_tables_functions.R")
@@ -420,7 +415,7 @@ ui <- fluidPage(
                               Over the past decade there have been 2 to 10 sales annually.
                               This data will be updated monthly. The HOA and Government information will be
                               updated after each election or when a significant change comes to my attention."),
-                       tags$p("Charles Knell, October 15, 2025")
+                       tags$p("Charles Knell, August 19, 2025")
                 ),
              )
         )
@@ -557,9 +552,9 @@ server <- function(input, output, session) {
 
     # PROPERTY DETAILS TAB SERVER FUNCTIONS --- BEGIN ----
     # Load the property details DT table ----
-#
-#     eg_DT_ssf <- read_rds("02_processed_data/eg_gt_ssf.rds") %>%
-#         mutate(RowID = row_number(), .before = everything())
+
+    eg_DT_ssf <- read_rds("02_processed_data/eg_gt_ssf.rds") %>%
+        mutate(RowID = row_number(), .before = everything())
 
     # Reactive expression to filter data based on street selection ----
     filtered_data <- reactive({

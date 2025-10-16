@@ -516,7 +516,7 @@ if (!exists("tool_tips_tbl", envir = .GlobalEnv)) {
  }
 
 
-# Effective Year Built map (updated) ----
+ # Effective Year Built map (updated) ----
  make_interactive_effective_year_built_map <- function(){
      # Prep data tables for construction this map.
 
@@ -527,7 +527,7 @@ if (!exists("tool_tips_tbl", envir = .GlobalEnv)) {
                                        bind_rows()) %>%
          select(account, eff_yr_built)
 
-    # Bind eff_yr_built_tbl to eg_mapping_tbl in order to color lots by effective year built
+     # Bind eff_yr_built_tbl to eg_mapping_tbl in order to color lots by effective year built
      eyb_eg_mapping_tbl <- eg_mapping_tbl %>%
          left_join(eff_yr_built_tbl, by = c("account" = "account")) %>%
          mutate(eff_yr_built_bin =
@@ -549,20 +549,20 @@ if (!exists("tool_tips_tbl", envir = .GlobalEnv)) {
                                               "2001 to 2005",
                                               "Pre 2001"
                                           )
-                                   )
+         )
          )
 
-    # Join eg_mapping_tbl to tool_tips_tbl
+     # Join eg_mapping_tbl to tool_tips_tbl
      eyb_eg_mapping_tbl <- eyb_eg_mapping_tbl %>%
          left_join(tool_tips_tbl, by = "account") %>%
          select(eff_yr_built_bin, everything())
 
-    # End data prep section
+     # End data prep section
 
      # Begin map creation section
 
      effective_year_built_plot <- ggplot() +
-         # Add color
+         # Add color (Creates 6 traces: 1 for each category)
          geom_sf(data = eyb_eg_mapping_tbl, aes(fill = factor(eff_yr_built_bin))) +
 
          # Specify colors for legend
@@ -583,14 +583,14 @@ if (!exists("tool_tips_tbl", envir = .GlobalEnv)) {
          ) +
          labs(fill = "Effective Year Built") +
 
-         # Add invisible points at centroids for tooltips
+         # Add invisible points at centroids for tooltips (Creates 1 trace: Trace 7)
          geom_sf(data = eyb_eg_mapping_tbl,
                  aes(geometry = centroid, text = eff_yr_built_tool_tip),  # Tooltip mapping
                  color = "transparent",  # Ensures invisibility
                  size = 0.001,
                  alpha = 0) +
 
-         # Add street numbers as text at centroids
+         # Add street numbers as text at centroids (Creates 1 trace: Trace 8)
          geom_text(data = eyb_eg_mapping_tbl,
                    aes(x = st_coordinates(centroid)[, 1],  # Longitude of centroid
                        y = st_coordinates(centroid)[, 2],  # Latitude of centroid
@@ -615,33 +615,41 @@ if (!exists("tool_tips_tbl", envir = .GlobalEnv)) {
              textangle = streets_tbl$angle
          )
 
-     # Remove default tooltips
-     effective_year_built_plot$x$data[[2]]$hoverinfo <- "none"
-     effective_year_built_plot$x$data[[3]]$hoverinfo <- "none"
-     effective_year_built_plot$x$data[[4]]$hoverinfo <- "none"
-     effective_year_built_plot$x$data[[5]]$hoverinfo <- "none"
-     effective_year_built_plot$x$data[[6]]$hoverinfo <- "none"
+     # --- FIX: Ensure all 6 polygon traces are explicitly hidden from the legend ---
 
-     # Add account numbers to the layer with tooltips
+     # Hide default legend for the 6 polygon traces (indices 1 through 6)
+     # This uses lapply for cleaner code than indexing each trace manually.
+     effective_year_built_plot$x$data[1:6] <- lapply(effective_year_built_plot$x$data[1:6], function(d) {
+         d$showlegend <- FALSE
+         return(d)
+     })
+
+     # Hide default tooltips for all data layers (polygons 1-6, centroid 7, text 8)
+     # Polygons and the text layer should not show default tooltips.
+     effective_year_built_plot$x$data[1:8] <- lapply(effective_year_built_plot$x$data[1:8], function(d) {
+         d$hoverinfo <- "none"
+         return(d)
+     })
+
+     # Re-enable the *custom* tooltip on the dedicated centroid trace (which should be index 7)
+     # The default `hoverinfo` for the centroid trace is overwritten by the above lapply.
+     # We only want the custom `text` mapping to show for the centroid layer.
+     effective_year_built_plot$x$data[[7]]$hoverinfo <- "text"
+
+     # Add account numbers to the layer with tooltips (Index 7 is the centroid layer)
      effective_year_built_plot$x$data[[7]]$customdata <- joined_tbl$account
 
-     # Remove default legend
-     effective_year_built_plot$x$data[[2]]$showlegend <- FALSE
-     effective_year_built_plot$x$data[[3]]$showlegend <- FALSE
-     effective_year_built_plot$x$data[[4]]$showlegend <- FALSE
-     effective_year_built_plot$x$data[[5]]$showlegend <- FALSE
-     effective_year_built_plot$x$data[[6]]$showlegend <- FALSE
-
      # Reduce shape border widths
-     effective_year_built_plot$x$data[[2]]$line$width <- 1
-     effective_year_built_plot$x$data[[3]]$line$width <- 1
-     effective_year_built_plot$x$data[[4]]$line$width <- 1
-     effective_year_built_plot$x$data[[5]]$line$width <- 1
-     effective_year_built_plot$x$data[[6]]$line$width <- 1
+     effective_year_built_plot$x$data[1:6] <- lapply(effective_year_built_plot$x$data[1:6], function(d) {
+         d$line$width <- 1
+         return(d)
+     })
 
-     # Substitute legend
+
+     # Substitute legend (Annotations section remains the same)
      effective_year_built_plot <- effective_year_built_plot %>%
          layout(
+             showlegend = FALSE, # <--- NEW: Force hide the default legend container
              annotations = list(
                  # Legend name
                  list(
@@ -811,7 +819,9 @@ if (!exists("tool_tips_tbl", envir = .GlobalEnv)) {
      return(effective_year_built_plot)
  }
 
-# Assessed Per Square Foot map (distinct structure owing to continuous scale) ----
+
+
+ # Assessed Per Square Foot map (distinct structure owing to continuous scale) ----
  make_interactive_assessed_per_sqft_map <- function() {
      # Calculate assessed value per square foot
      data_tbl <- joined_tbl %>%
@@ -1139,12 +1149,16 @@ if (!exists("tool_tips_tbl", envir = .GlobalEnv)) {
      return(recent_permits)
  }
 
+ # Save merged recent permits table to file ----
+ write_rds(merge_recent_permits(), "02_processed_data/accela_building_permits_tbl.rds")
+
  # Merge old data with Accela data
  create_building_permit_history_tbl <- function(){
      accela_permits_tbl <- read_rds("02_processed_data/accela_building_permits_tbl.rds")
      older_permits_tbl <- read_rds("02_processed_data/building_permits_tbl.rds")
 
-     bind_rows(accela_permits_tbl, older_permits_tbl)
+     building_permit_history_tbl <- bind_rows(accela_permits_tbl, older_permits_tbl)
+     return(building_permit_history_tbl)
  }
 
  # Create re-roofing tibble with one row for each house with data for the most recent
