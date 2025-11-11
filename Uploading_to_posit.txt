@@ -1,0 +1,45 @@
+Files to transfer to staging instance (emerald_gardens)
+# Map files
+03_plot_files/interactive_assessed_per_sqft_map.rds
+03_plot_files/interactive_effective_year_built_map.rds
+03_plot_files/interactive_last_sale_map.rds
+03_plot_files/interactive_owner_occupied_map.rds
+03_plot_files/interactive_pool_map.rds
+03_plot_files/interactive_roof_map.rds
+
+# Data plot files
+## Interactive
+03_plot_files/interactive_sales_by_year_plot.rds
+03_plot_files/interactive_sales_by_year_plot.rds
+
+## Static
+03_plot_files/model_dot_plot.rds
+03_plot_files/q-q_residuals_plot.rds
+03_plot_files/residuals_scatter_plot.rds
+
+
+# Explanatory files
+03_plot_files/just_values_explanation_chatgpt.html
+03_plot_files/q-q_plot_explanation_chatgpt.html
+03_plot_files/residuals_scatter_plot_explanation_chatgpt.html
+03_plot_files/model_explanation_chatgpt.html
+03_plot_files/just_value_estimation_explanation.html
+
+# Data files
+02_processed_data/property_info_pages_tbl.rds
+02_processed_data/building_permits_mapping_tbl.rds
+02_processed_data/property_info_pages_tbl.rds
+02_processed_data/building_permits_mapping_tbl.rds
+02_processed_data/eg_gt_ssf.rds
+
+# R scripts
+00_R_scripts/00.02_transform_data/pop_up_tables.R
+00_R_scripts/00.02_transform_data/property_details_tables_functions.R
+00_R_scripts/00.03_map_creation_functions/misc_data_plots.R
+00_R_scripts/00.03_map_creation_functions/map_creation_functions.R
+
+# Git commands to push this app to repository:
+# At the terminal prompt:
+cknell$ git add .
+cknell$ git commit -m "descriptive remarks go between quotes"
+cknell$ git push

@@ -415,7 +415,7 @@ ui <- fluidPage(
                               Over the past decade there have been 2 to 10 sales annually.
                               This data will be updated monthly. The HOA and Government information will be
                               updated after each election or when a significant change comes to my attention."),
-                       tags$p("Charles Knell, August 19, 2025")
+                       tags$p("Charles Knell, November 11, 2025")
                 ),
              )
         )
