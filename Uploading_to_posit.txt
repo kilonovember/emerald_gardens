@@ -43,3 +43,13 @@ Files to transfer to staging instance (emerald_gardens)
 cknell$ git add .
 cknell$ git commit -m "descriptive remarks go between quotes"
 cknell$ git push
+
+# Page to change redirect each month on http(s)://chasknell.com/emerald_gardens:
+https://server177.web-hosting.com:2083/cpsess3671497520/frontend/jupiter/mime/redirect.html
+# Delete existing and create new using the GUID for this month's Posit URL
+
+# Monthly history for Emerald Gardens Shiny app URLs
+https://019a73ad-d0f1-d62b-3e01-d86a69bb5d4c.share.connect.posit.cloud/  -- November 2025
+https://0199ed91-4e4c-da96-de0f-1692461dcb8e.share.connect.posit.cloud/  -- October 2025
+
+
