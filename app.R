@@ -7,16 +7,16 @@
 #    https://shiny.posit.co/
 #
 
-library(shiny)
-library(shinyjs)
-library(tidyverse)
-library(gt)
-library(DT)
-library(scales)
-library(htmltools)
-library(plotly)
-library(shinyWidgets)
-library(leaflet)
+tryCatch({library(shiny)}, error = function(e) { stop("Failed to load shiny: ", conditionMessage(e)) })
+tryCatch({library(shinyjs)}, error = function(e) { stop("Failed to load shinyjs: ", conditionMessage(e)) })
+tryCatch({library(tidyverse)}, error = function(e) { stop("Failed to load tidyverse: ", conditionMessage(e)) })
+tryCatch({library(gt)}, error = function(e) { stop("Failed to load gt: ", conditionMessage(e)) })
+tryCatch({library(DT)}, error = function(e) { stop("Failed to load DT: ", conditionMessage(e)) })
+tryCatch({library(scales)}, error = function(e) { stop("Failed to load scales: ", conditionMessage(e)) })
+tryCatch({library(htmltools)}, error = function(e) { stop("Failed to load htmltools: ", conditionMessage(e)) })
+tryCatch({library(plotly)}, error = function(e) { stop("Failed to load plotly: ", conditionMessage(e)) })
+tryCatch({library(shinyWidgets)}, error = function(e) { stop("Failed to load shinyWidgets: ", conditionMessage(e)) })
+tryCatch({library(leaflet)}, error = function(e) { stop("Failed to load leaflet: ", conditionMessage(e)) })
 
 # Load maps ----
 assessed_pr_sqft_map <- read_rds("03_plot_files/interactive_assessed_per_sqft_map.rds") %>% event_register("plotly_click")
