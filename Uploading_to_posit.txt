@@ -44,11 +44,40 @@ cknell$ git add .
 cknell$ git commit -m "descriptive remarks go between quotes"
 cknell$ git push
 
-# Page to change redirect each month on http(s)://chasknell.com/emerald_gardens:
+# Once the files have been pushed to github, set repository to public, then open the web page for the
+# just-updated app. Copy the URL for use in updating the redirect link as described below.
+
+
+# Change redirect each month on http(s)://chasknell.com/emerald_gardens:
+To change the redirect address for your web app hosted on Namecheap using cPanel, follow these steps:
+1. Log in to your Namecheap account at ap.www.namecheap.com. The login dialogue has stored the user name and password.
+    Click in each of these inputs. When filled in, click the "Sign in and Continue" button.
+    This will take you to the two-factor authenication page where you confirm your phone number.
+    A verification code will be sent via text message. Click the fill in verfication code button.
+    Then click the Submit Security Code button. You are now logged in.
+
+2. Choose the “Hosting” option from the top menu bar.
+3. Select "Shared Hosting".
+4. Click the “Manage” button next to it. This will take you to the control panel page.
+5. On the Control Panel page you will see a sidebar menu on the left. Choose the "Hosting List" option.
+6. On this page click the "GO TO CPANEL" button on the right side of the page.
+7. When the cPanel page is loaded, scroll down to the "Domains" section.
+8. Select the "Redirects" option.
+9. On the "Redirects" page:
+    Leave the Type option unchanged
+    In the next input ("https?://(www.)?") drop down and choose chasknell.com
+    In the input below, click in the box and choose "emerald_gardens".
+    Below that input is the "Redirects to" input. Paste the URL just created when you published to Posit.
+        If there are already five redirects listed in this section, delete them.
+    Then click the "Add" button
+
+
+
 https://server177.web-hosting.com:2083/cpsess3671497520/frontend/jupiter/mime/redirect.html
 # Delete existing and create new using the GUID for this month's Posit URL
 
 # Monthly history for Emerald Gardens Shiny app URLs
+https://019b0e0a-d1b9-a1f5-3f9e-4a61763691e6.share.connect.posit.cloud/  -- December 2025
 https://019a73ad-d0f1-d62b-3e01-d86a69bb5d4c.share.connect.posit.cloud/  -- November 2025
 https://0199ed91-4e4c-da96-de0f-1692461dcb8e.share.connect.posit.cloud/  -- October 2025
 
