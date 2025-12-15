@@ -27,8 +27,8 @@ pool_map <- read_rds("03_plot_files/interactive_pool_map.rds") %>% event_registe
 roof_map <- read_rds("03_plot_files/interactive_roof_map.rds") %>% event_register("plotly_click")
 
 # Load static plots (no on-demand creation of plot) ----
-    tryCatch({
-        just_valuation_dot_plot <- read_rds("03_plot_files/model_dot_plot.rds")
+
+        just_valuation_dot_plot <- tryCatch({read_rds("03_plot_files/model_dot_plot.rds")
     }, error = function(e){
         message("Error loading model_dot_plot.rds: ", conditionMessage(e))
         ggplot2::ggplot() +
