@@ -17,7 +17,7 @@ library(htmltools)
 library(plotly)
 library(shinyWidgets)
 library(leaflet)
-library(ggrepel)
+# library(ggrepel)
 
 # Load maps ----
 assessed_pr_sqft_map <- read_rds("03_plot_files/interactive_assessed_per_sqft_map.rds") %>% event_register("plotly_click")
