@@ -6,7 +6,7 @@
 # --- EXCLUSION RULES FOR RAW DATA ---
 
 # 1. Ignore ALL files in the 01_raw_data directory
-01_raw_data/*
+01_raw_data/**
 
 # 2. EXCEPTION: UN-IGNORE (i.e., INCLUDE) the specific files you DO want to track.
 !01_raw_data/building_permits_history_accela_Diamond.csv
