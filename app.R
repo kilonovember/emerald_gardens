@@ -19,12 +19,73 @@ library(shinyWidgets)
 library(leaflet)
 
 # Load maps ----
-assessed_pr_sqft_map <- read_rds("03_plot_files/interactive_assessed_per_sqft_map.rds") %>% event_register("plotly_click")
-effective_year_built_map <- read_rds("03_plot_files/interactive_effective_year_built_map.rds") %>% event_register("plotly_click")
-last_sale_map <- read_rds("03_plot_files/interactive_last_sale_map.rds") %>% event_register("plotly_click")
-owner_occupied_map <- read_rds("03_plot_files/interactive_owner_occupied_map.rds") %>% event_register("plotly_click")
-pool_map <- read_rds("03_plot_files/interactive_pool_map.rds") %>% event_register("plotly_click")
-roof_map <- read_rds("03_plot_files/interactive_roof_map.rds") %>% event_register("plotly_click")
+assessed_pr_sqft_map <- tryCatch({
+    read_rds("03_plot_files/interactive_assessed_per_sqft_map.rds") %>%
+        event_register("plotly_click")
+    }, error = function(e){
+        message("Error loading interactive_assessed_per_sqft_map: ", conditionMessage(e))
+        ggplot2::ggplot() +
+            ggplot2::annotate("text", x = 0.5, y = 0.5,
+                              label = paste("MAP LOAD CRASH! \nError:", conditionMessage(e)),
+                              size = 5, color = "red") +
+            ggplot2::theme_void()
+})
+
+effective_year_built_map <- tryCatch({
+    read_rds("03_plot_files/interactive_effective_year_built_map.rds") %>%
+        event_register("plotly_click")
+    }, error = function(e){
+        message("Error loading interactive_effective_year_built_map: ", conditionMessage(e))
+        ggplot2::ggplot() +
+            ggplot2::annotate("text", x = 0.5, y = 0.5,
+                              label = paste("MAP LOAD CRASH! \nError:", conditionMessage(e)),
+                              size = 5, color = "red") +
+            ggplot2::theme_void()
+})
+
+last_sale_map <- tryCatch({read_rds("03_plot_files/interactive_last_sale_map.rds") %>%
+        event_register("plotly_click")
+    }, error = function(e){
+        message("Error loading interactive_last_sale_map: ", conditionMessage(e))
+        ggplot2::ggplot() +
+            ggplot2::annotate("text", x = 0.5, y = 0.5,
+                              label = paste("MAP LOAD CRASH! \nError:", conditionMessage(e)),
+                              size = 5, color = "red") +
+            ggplot2::theme_void()
+})
+
+owner_occupied_map <- tryCatch({read_rds("03_plot_files/interactive_owner_occupied_map.rds") %>%
+        event_register("plotly_click")
+    }, error = function(e){
+        message("Error loading interactive_owner_occupied_map: ", conditionMessage(e))
+        ggplot2::ggplot() +
+            ggplot2::annotate("text", x = 0.5, y = 0.5,
+                              label = paste("MAP LOAD CRASH! \nError:", conditionMessage(e)),
+                              size = 5, color = "red") +
+            ggplot2::theme_void()
+})
+
+pool_map <- tryCatch({read_rds("03_plot_files/interactive_pool_map.rds") %>%
+    event_register("plotly_click")
+    }, error = function(e){
+        message("Error loading interactive_pool_map: ", conditionMessage(e))
+        ggplot2::ggplot() +
+            ggplot2::annotate("text", x = 0.5, y = 0.5,
+                              label = paste("MAP LOAD CRASH! \nError:", conditionMessage(e)),
+                              size = 5, color = "red") +
+            ggplot2::theme_void()
+})
+
+roof_map <- tryCatch({read_rds("03_plot_files/interactive_roof_map.rds") %>%
+        event_register("plotly_click")
+    }, error = function(e){
+        message("Error loading interactive_pool_map: ", conditionMessage(e))
+        ggplot2::ggplot() +
+            ggplot2::annotate("text", x = 0.5, y = 0.5,
+                              label = paste("MAP LOAD CRASH! \nError:", conditionMessage(e)),
+                              size = 5, color = "red") +
+            ggplot2::theme_void()
+})
 
 # Load interactive just valuation dot plot
 just_valuation_dot_plot <- tryCatch({
