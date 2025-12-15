@@ -18,8 +18,6 @@ library(plotly)
 library(shinyWidgets)
 library(leaflet)
 
-options(shiny.fullstacktrace = TRUE)
-
 # Load maps ----
 assessed_pr_sqft_map <- read_rds("03_plot_files/interactive_assessed_per_sqft_map.rds") %>% event_register("plotly_click")
 effective_year_built_map <- read_rds("03_plot_files/interactive_effective_year_built_map.rds") %>% event_register("plotly_click")
@@ -660,15 +658,34 @@ server <- function(input, output, session) {
     # VALUATION TAB PLOT SERVER FUNCTIONS --- BEGIN ----
     # PLOTS ----
     output$top_row_plot <- renderPlotly({
-        read_rds("03_plot_files/model_dot_plot.rds")
+        tryCatch({
+            read_rds("03_plot_files/model_dot_plot.rds")
+            }, error = function(e){
+                plot.new()
+                text(0.5, 0.5, paste("PLOT RENDER FAILED!\n", conditionMessage(e)),
+                     cex = 1.2, col = "red")
+            })
+
     })
 
     output$bottom_left_plot <- renderPlot({
-        read_rds("03_plot_files/q-q_residuals_plot.rds")
+        tryCatch({
+            read_rds("03_plot_files/q-q_residuals_plot.rds")
+        }, error = function(e){
+            plot.new()
+            text(0.5, 0.5, paste("PLOT RENDER FAILED!\n", conditionMessage(e)),
+                 cex = 1.2, col = "red")
+        })
     })
 
     output$bottom_right_plot <- renderPlot({
-        read_rds("03_plot_files/residuals_scatter_plot.rds")
+        tryCatch({
+            read_rds("03_plot_files/residuals_scatter_plot.rds")
+        }, error = function(e){
+            plot.new()
+            text(0.5, 0.5, paste("PLOT RENDER FAILED!\n", conditionMessage(e)),
+                 cex = 1.2, col = "red")
+        })
     })
 
     output$model_summary <- renderUI({
