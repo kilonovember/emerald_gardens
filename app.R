@@ -28,8 +28,30 @@ roof_map <- read_rds("03_plot_files/interactive_roof_map.rds") %>% event_registe
 
 # Load static plots (no on-demand creation of plot) ----
 just_valuation_dot_plot <- read_rds("03_plot_files/model_dot_plot.rds")
-just_valuation_qq_plot <- read_rds("03_plot_files/q-q_residuals_plot.rds")
-just_valuation_residuals_scatter_plot <- read_rds("03_plot_files/residuals_scatter_plot.rds")
+
+tryCatch({
+    just_valuation_qq_plot <- read_rds("03_plot_files/q-q_residuals_plot.rds")
+    }, error = function(e){
+    message("Error loading just_valuation_qq_plot: ", conditionMessage(e))
+    ggplot2::ggplot() +
+        ggplot2::annotate("text", x = 0.5, y = 0.5,
+                          label = paste("PLOT LOAD FAILED! Check Logs.\nError:", conditionMessage(e)),
+                          size = 5, color = "red") +
+        ggplot2::theme_void()
+    })
+
+    tryCatch({
+        just_valuation_residuals_scatter_plot <- read_rds("03_plot_files/residuals_scatter_plot.rds")
+    }, error = function(e){
+        message("Error loading just_valuation_residuals_scatter_plot: ", conditionMessage(e))
+        ggplot2::ggplot() +
+            ggplot2::annotate("text", x = 0.5, y = 0.5,
+                              label = paste("PLOT LOAD FAILED! Check Logs.\nError:", conditionMessage(e)),
+                              size = 5, color = "red") +
+            ggplot2::theme_void()
+    })
+
+
 interactive_sales_by_year_plot <- read_rds("03_plot_files/interactive_sales_by_year_plot.rds")
 
 
