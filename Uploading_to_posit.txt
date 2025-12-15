@@ -32,6 +32,7 @@ Files to transfer to staging instance (emerald_gardens)
 02_processed_data/building_permits_mapping_tbl.rds
 02_processed_data/eg_gt_ssf.rds
 
+
 # R scripts
 00_R_scripts/00.02_transform_data/pop_up_tables.R
 00_R_scripts/00.02_transform_data/property_details_tables_functions.R
@@ -40,9 +41,9 @@ Files to transfer to staging instance (emerald_gardens)
 
 # Git commands to push this app to repository:
 # At the terminal prompt:
-cknell$ git add .
-cknell$ git commit -m "descriptive remarks go between quotes"
-cknell$ git push
+git add .
+git commit -m "descriptive remarks go between quotes"
+git push
 
 # Once the files have been pushed to github, set repository to public, then
 # open the web page for the just-updated app.
