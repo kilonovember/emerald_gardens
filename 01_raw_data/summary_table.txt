@@ -1,0 +1,25 @@
+Call:
+glm(formula = log_just ~ log_lot_size + log_living_area + has_pool +
+    bathrooms + half_baths + eff_yr_built, data = make_lm_data_tbl() %>%
+    mutate(log_just = log(just), log_lot_size = log(lot_size),
+        log_living_area = log(living_area)))
+
+Coefficients:
+                  Estimate Std. Error t value Pr(>|t|)
+(Intercept)     -1.853e+01  1.651e+00 -11.219  < 2e-16 ***
+log_lot_size     2.482e-01  5.727e-02   4.334 3.06e-05 ***
+log_living_area  3.916e-01  3.462e-02  11.314  < 2e-16 ***
+has_poolTRUE     1.045e-01  7.338e-03  14.242  < 2e-16 ***
+bathrooms        3.646e-02  9.689e-03   3.763 0.000261 ***
+half_baths       3.105e-02  1.347e-02   2.306 0.022846 *
+eff_yr_built     1.300e-02  7.707e-04  16.873  < 2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for gaussian family taken to be 0.001510157)
+
+    Null deviance: 1.38806  on 126  degrees of freedom
+Residual deviance: 0.18122  on 120  degrees of freedom
+AIC: -455.72
+
+Number of Fisher Scoring iterations: 2

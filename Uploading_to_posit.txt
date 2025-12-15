@@ -44,8 +44,14 @@ cknell$ git add .
 cknell$ git commit -m "descriptive remarks go between quotes"
 cknell$ git push
 
-# Once the files have been pushed to github, set repository to public, then open the web page for the
-# just-updated app. Copy the URL for use in updating the redirect link as described below.
+# Once the files have been pushed to github, set repository to public, then
+# open the web page for the just-updated app.
+# Choose Publish from the menu on the left.
+# In the From GitHub tab choose Shiny.
+# Select kilonovember/emerald_gardens in the Repository drop-down.
+# Select app.R in the Primary file drop-down.
+# Click the Publish button.
+#  Copy the URL for use in updating the redirect link as described below.
 
 
 # Change redirect each month on http(s)://chasknell.com/emerald_gardens:

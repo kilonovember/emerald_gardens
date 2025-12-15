@@ -1,0 +1,862 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en-US">
+<head id="Head">
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+<meta content="text/javascript" http-equiv="Content-Script-Type" />
+<meta content="text/css" http-equiv="Content-Style-Type" />
+<meta id="MetaDescription" name="DESCRIPTION" content="This menu page provides useful links for residents." />
+<meta id="MetaKeywords" name="KEYWORDS" content="citizen, resident, Sarasota County citizen, Sarasota County resident, homeowner, property owner" />
+<meta id="MetaAuthor" name="AUTHOR" content="Welcome to Sarasota County Government, Florida" />
+<meta name="RESOURCE-TYPE" content="DOCUMENT" /><meta name="DISTRIBUTION" content="GLOBAL" />
+<meta id="MetaRobots" name="ROBOTS" content="INDEX, FOLLOW" />
+<meta name="REVISIT-AFTER" content="1 DAYS" />
+<meta name="RATING" content="GENERAL" />
+<meta http-equiv="PAGE-ENTER" content="RevealTrans(Duration=0,Transition=1)" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<link id="APortals__default_" rel="stylesheet" type="text/css" href="css/default.css" />
+<link id="APortals__default_Skins_OC_FLSites_" rel="stylesheet" type="text/css" href="css/skin.css" />
+<link id="APortals__default_Containers_OCFL_Section_NoHeader_css" rel="stylesheet" type="text/css" href="css/Section_NoHeader.css" />
+<link id="APortals_0_" rel="stylesheet" type="text/css" href="css/portal.css" />
+<link id="OCMegaMenu_css" type="text/css" rel="Stylesheet" href="css/OCMegaMenu.css">
+
+<script type="text/javascript" src="common/jquery/jquery.min.js" ></script>
+<link rel="stylesheet" type="text/css" href="common/entraprise.css">
+<script language="JavaScript" src="common/entraprise.js"></script>
+<!-- link rel="SHORTCUT ICON" href="images/favicon.ico" /-->
+
+<title>
+	Sarasota County Gov FL </title></head>
+<body id="Body">
+  <form name="theform" method="POST" action="">
+
+  <input type="HIDDEN" name="lid" id="lid" value="">
+  <input type="HIDDEN" name="isEscrow" id="isEscrow" value="false"
+
+
+  >
+
+<a href="#" onClick="f_submitTarget('http://www.scgov.net', '_blank');">
+<div id="topbanner" style="background-color:#203b59; border-bottom:5px solid #00723B; height:95px; width:100%; text-align:center; ">
+	<center><div style="width:951px;  padding-top:2px; text-align:center;">
+		 <span style="float:left;"><img src='images/WhiteSCGLogo85.png' ></span>
+	</div></center>
+</div>
+</a>
+
+
+
+<div id="container">
+
+<div id="left">
+	<div id="dnn_LeftPane" class="left" style="min-height:500px;">
+    <div class="sectionnh">
+    <div class="sectionnhbody">
+    <div class="menuwrap">
+    <div class="menucontent">
+	 <span class="menu-item-text"></span><BR/><BR/>
+	 <ul>
+	<li><a href="#" onClick="f_submit('index.jsp');"></a> </li>
+	</ul>
+	 <span class="menu-item-text"></span><BR/><BR/>
+	 <ul>
+	 <li><a href="#" onClick="f_submit('index.jsp');"></a> </li>
+	<li><a href="#" onClick="f_submit('index.jsp');"></a> </li>
+	</ul>
+
+    <span class="menu-item-text"></span><BR/><BR/>
+<ul>
+
+<li><a href="#" onClick="f_submit('index.jsp');"></a> </li>
+
+
+<li><a href="#" title="Only create this if you are looking for setbacks, zoning, code clarification, what permits were pulled on a property, etc" onClick="f_submit('index.jsp');"></a> </li>
+
+
+<li><a href="#" onClick="f_submitTarget('https://www.scgov.net/government/planning-and-development-services/building/-folder-4789#docan9720_11639_7049', '_blank');"></a></li>
+
+
+
+<!--
+<li><a href="#" title="Only create this if you are requesting copies of permits, plans, site surveys, etc" onClick="f_submit('RequestForInfo.jsp?FolderType=PR');">Building Plan(s) Retrieval Request</a> </li>-->
+
+<li><a href="#" onClick="f_submit('index.jsp');"></a> </li>
+<!-- <li><a href="#" onClick="f_submit('RequestForInfo.jsp?FolderType=DR');">Report Structural Damage</a> </li> -->
+<li><a href="#" onClick="f_submit('index.jsp');"></a></li>
+<li><a href="#" onClick="f_submit('index.jsp');"> <br/><i> </i> </a></li>
+
+<li><a href="#" onClick="f_submit('index.jsp');"></a> </li>
+<li><a href="#" onClick="f_submit('index.jsp');"></a> </li>
+<li><a href="#" onClick="f_submit('index.jsp');"></a> </li>
+<li><a href="#" onClick="f_submit('index.jsp');"></a> </li>
+
+<li><a href="#" onClick="f_submitTarget('index.jsp');"></a></li>
+
+<li><a href="#" onClick="f_submit('index.jsp');"><br/> </a></li>
+
+ <!--
+<li><a href="#" onClick="f_submitTarget('https://intwebs2ext.scgov.net/impactfees/BuildingUse', '_blank');">Impact Fee Calculator</a></li>
+
+
+
+
+<li><a href="#" onClick="f_submit('Feedback.jsp');">Feedback<br/></a></li>
+<li><a href="#" onClick="f_submit('ViewReport_Index.jsp');">Statistics</a> </li>
+
+
+
+
+
+<li><a href="#" onClick="f_submitTarget('https://www.scgov.net/government/planning-and-development-services/building', '_blank');">Documents</a> </li>
+<li><a href="#" onClick="f_submitTarget('PdfDocuments/Contact Info.pdf');">Contact Information</a> </li>
+<li></li>
+</ul>
+<span class="menu-item-text">Member Services</span><BR/><BR/>
+
+
+<li><a href="#" onClick="f_submit('index.jsp');">My Services/Sign-In</a> </li>
+<li><a href="#" onClick="f_submit('index.jsp');">My Profile</a> </li>
+<li><a href="#" onClick="f_submit('index.jsp');">Manage my Inspections</a> </li>
+<li><a href="#" onClick="f_submit('index.jsp');">Add Agent(s) to my Account</a> </li>
+<li><a href="#" onClick="f_submit('index.jsp');">Add Subcontractor(s) to my permit(s)</a> </li>
+<li></li>
+</ul>
+
+
+
+
+
+                    <h3>LINKS</h3>
+                    <ul>
+<li><a href="#" onClick="f_submitTarget('','_blank');">Help for First Time Users</a></li>
+<li><a href="#" onClick="f_submitTarget('','_blank');">Permits &amp; Licenses</a></li>
+<li><a href="#" onClick="f_submitTarget('');">Planning &amp; Development</a></li>
+<li></li>
+					</ul>
+                    <h3>IMPORTANT NOTES</h3>
+                    <ul>
+<li><a href="#" onClick="f_submitTarget('','_blank');">Building Official Memos</a></li>
+<li><a href="#" onClick="f_submitTarget('','_blank');">Danger of Unlicensed Contracting</a></li>
+<li><a href="#" onClick="f_submitTarget('','_blank');">Permitting and Inspection Information</a></li>
+					</ul>
+
+-->
+</div>
+<div class="menubottom"></div>
+</div>
+</div>
+<div class="sectionnhfooter"></div>
+</div>
+</div>
+</div>
+<div id="rightarea">
+<div id="content">
+<div class="sectionnh">
+<div class="sectionnhheader"></div>
+<div class="sectionnhbody">
+
+<form>
+<table style="width:100%;font-size:12px; color:black;" cellpadding="1" cellspacing="1" border="0"  >
+
+<tr><td style="font-size:18px; font-weight:bold">Permit Search</td></tr>
+
+
+
+		<tr><td>
+		<table style="width:100%;font-size:12px; color:black;" cellpadding="5" cellspacing="1" border="0"  >
+		<table style="width:100%;font-size:12px; color:black;" cellpadding="5" cellspacing="1" border="0" id="table0" name="table0" class="fixedtable">
+		<tr class="FormsubHeadings">
+
+
+
+
+<tr><td style="font-size:11px; font-weight:bold"><BR/>This dynamic search functionality has replaced our old pdf, static reports.  Enter your search criteria and print out your page once the information is returned.</td></tr>
+<tr><td height="3px"></td></tr>
+
+<tr>
+<td><font color="maroon"> <b>Disclaimer : </b>
+Please Note that Sarasota County Code Enforcement Division does not Provide Information Regarding Environmental Protection Cases, Utility Real Property Liens (Water or Sewer Liens or Billing), Health Department Liens, Fines, or Violations, Solid Waste Liens, Fines, or Violations, Fire Department Permits or Fire Alarm Billing, Storm Water Cases, or Any Other County Department Issues.  Below are Contact Numbers for these Departments/Divisions; Please Contact these Departments/Divisions Directly for Information/Assistance (Any not Listed, Call the County Contact Center at 941/861-5000): </font>
+
+</td>
+</tr>
+</table>
+<table style="width:100%">
+<tr>
+<td>
+<b>Environmental Protection:</b>	941-861-0827 / 941-861-0673 / 941-861-0675
+</td>
+</tr>
+<tr>
+<td>
+<b>Utilities :</b>  (941) 861-6767 (Main County Utility Connections/Lien Office Number),
+<a href = "mailto: UtilitiesConnections@scgov.net">UtilitiesConnections@scgov.net</a>
+<a href = "mailto: metersets@scgov.net">metersets@scgov.net</a> (county water meter inquiries), and (941) 861-0603 (e-fax).
+</td>
+</tr>
+<tr>
+<td>
+<b>Fire Department </b>(False Alarm Billing, Fire Permits)	941-861-2290
+</td>
+</tr>
+<tr>
+<td>
+<b>Solid Waste:	</b>941-861-6758
+</td>
+</tr>
+<tr>
+<td>
+<b>Health Department:</b>	941-861-6133
+</td>
+</tr>
+
+
+<br/>
+</table>
+
+<tr><td class="groupTitle">Building Permits</td></tr>
+<tr><td align="center">
+  <table style="width:100%">
+    <tr class="detailData" align="center">
+                                <td align="right">STREET #</td>
+                                <td align="center">STREET NAME</td>
+                                <td align="center">STREET TYPE</td>
+                                <td align="center">ZIP CODE</td>
+    </tr>
+    <tr class="detailData">
+        <td align="Center"><input name="StreetNumber" type="text" maxlength="20" id="StreetNumber" style="width:140px;" value=""/></td>
+        <td align="Center"><input name="StreetName" type="text" maxlength="30" id="StreetName" style="width:140px;" value=""/></td>
+        <td align="Center"><select name="PropStreetType" style="width:150px;"><option  SELECTED value=""><option  SELECTED value=""><option title="Avenue" value="Ave">Avenue<option title="Bend" value="Bnd">Bend<option title="Boulevard" value="Blvd">Boulevard<option title="Causeway" value="Cswy">Causeway<option title="Center" value="Ctr">Center<option title="Circle" value="Cir">Circle<option title="Club" value="Clb">Club<option title="Cmns" value="Commons">Cmns<option title="Court" value="Ct">Court<option title="Cove" value="Cv">Cove<option title="Crescent" value="Cres">Crescent<option title="Crest" value="Crst">Crest<option title="Drive" value="Dr">Drive<option title="End" value="End">End<option title="Extension" value="Ext">Extension<option title="Grove" value="Grv">Grove<option title="Highway" value="Hwy">Highway<option title="Hill" value="Hl">Hill<option title="Hollow" value="Holw">Hollow<option title="Inlet" value="Inlt">Inlet<option title="Landing" value="Lndg">Landing<option title="Lane" value="Ln">Lane<option title="Loop" value="Loop">Loop<option title="Meadow" value="Mdw">Meadow<option title="Mews" value="Mews">Mews<option title="Park" value="Park">Park<option title="Parkway" value="Pkwy">Parkway<option title="Pass" value="Pass">Pass<option title="Path" value="Path">Path<option title="Place" value="Pl">Place<option title="Plaza" value="Plz">Plaza<option title="Point" value="Pt">Point<option title="Ramp" value="Ramp">Ramp<option title="Road" value="Rd">Road<option title="Rue" value="Rue">Rue<option title="Run" value="Run">Run<option title="Square" value="Sq">Square<option title="Street" value="St">Street<option title="Terrace" value="Ter">Terrace<option title="Trail" value="Trl">Trail<option title="Way" value="Way">Way<option title="Xing" value="Xing">Xing</select></td>
+        <td align="Center"><input name="ZipCode" type="text" maxlength="20" id="ZipCode" style="width:140px;" value=""/></td>
+    </tr>
+
+	 <!-- Commented By Amita as Per request from BO Kathy and Jon Mckenzie to Protected Exempt People
+	 <tr class="detailData" align="center">
+                                <td></td>
+                                <td align="center">ORGANIZATION NAME</td>
+                                <td align="center">FIRST NAME</td>
+                                <td align="center">LAST NAME</td>
+    </tr>
+
+
+
+
+    <tr class="detailData">
+	     <td align="right">PEOPLE SEARCH</td>
+      <td align="Center"><input name="OrgName1" type="text" maxlength="30" id="OrgName1" style="width:140px;" value="" /></td>
+        <td align="Center"><input name="FirstName1" type="text" maxlength="30" id="FirstName1" style="width:140px;" value=""/></td>
+        <td align="Center"><input name="LastName1" type="text" maxlength="20" id="LastName1" style="width:140px;" value=""/></td>
+    </tr>
+
+
+	--->
+
+      <tr class="detailData" align="center">
+                                <td align="right">PARCEL ID</td>
+                                <td colspan="3">
+                                <table border="0" width="100%">
+                                 <tr>
+                                 <td>
+                                 <table>
+                                 <tr>
+                                 <td style="width:75px;padding-left:25px;">
+                                 <input name="PropertyRoll" type="text" maxlength="12" id="PropertyRoll" style="width:140px;" value=""/>
+                                 </td>
+								 <td>
+								 <B>PARCEL ID SAMPLE: 0209010001</B>
+								 </td>
+                                 </tr>
+                                 </table>
+                                 </td>
+                                 </tr>
+                                 </table>
+                                </td>
+                </tr>
+<tr class="detailData" align="center">
+
+                                <td align="right">PERMIT TYPE</td>
+                                <td align="center">SUB TYPE</td>
+                                <td align="center">WORK TYPE</td>
+								<td align="center">STATUS</td>
+    </tr>
+    <tr class="detailData">
+		 <td align="center">
+		 <select  name="SelectPermit" id="SelectPermit" onChange="mul(this.value);"  style="width:140px;"
+		 class="FormDropDown">
+           <option value=""></option>
+
+			 <option value="BA">Accessory Structure</option>
+
+			 <option value="ZA">Administrative Adjustment</option>
+
+			 <option value="CE">Adult Establishment Compliance</option>
+
+			 <option value="ZE">Adult Establishment Permit</option>
+
+			 <option value="ZB">Alcohol Beverage Control</option>
+
+			 <option value="ZZ">Board of Zoning Appeal</option>
+
+			 <option value="CB">Building Compliance</option>
+
+			 <option value="BM">Building Move</option>
+
+			 <option value="BU">Business Use Permit</option>
+
+			 <option value="BB">Certificate of Occupancy</option>
+
+			 <option value="LC">Certified Contractor License</option>
+
+			 <option value="CC">Citation  NTOP</option>
+
+			 <option value="CG">Code Compliance General</option>
+
+			 <option value="BC">Commercial Building</option>
+
+			 <option value="CM">Compliance Monitoring</option>
+
+			 <option value="GA">Comprehensive Plan Amendment</option>
+
+			 <option value="BV">Culverts</option>
+
+			 <option value="BD">Demolition Permit</option>
+
+			 <option value="DS">Development Submittal</option>
+
+			 <option value="DT">Development Tower</option>
+
+			 <option value="RE">Earthmoving Permit</option>
+
+			 <option value="BE">Express Permits</option>
+
+			 <option value="FF">Finance Folder</option>
+
+			 <option value="FP">Fire Permit</option>
+
+			 <option value="FS">Fire Safety Inspection</option>
+
+			 <option value="CF">Flood Zone Compliance</option>
+
+			 <option value="RG">GBSL Coastal Setback</option>
+
+			 <option value="BG">Gas Install</option>
+
+			 <option value="HS">Health Dept. Septic</option>
+
+			 <option value="BH">HotelMotelLodge</option>
+
+			 <option value="GP">Land Use Petition</option>
+
+			 <option value="GR">Large Scale Development</option>
+
+			 <option value="LT">Licensed Trimmer</option>
+
+			 <option value="RR">Mangrove Trimming</option>
+
+			 <option value="BR">Minor Repairs</option>
+
+			 <option value="MC">Miscellaneous</option>
+
+			 <option value="RM">Monitoring  Mitigation</option>
+
+			 <option value="CN">Newsrack Compliance</option>
+
+			 <option value="CS">NoiseSound Compliance</option>
+
+			 <option value="BO">OTC - AC, Electric, Plumbing, etc</option>
+
+			 <option value="BL">Over Size  Over Weight </option>
+
+			 <option value="AP">Petroleum Contaminated Site</option>
+
+			 <option value="DP">Platting</option>
+
+			 <option value="BP">Pool  Spa  Cage</option>
+
+			 <option value="PA">Pre-Application</option>
+
+			 <option value="PS">Presubmittal</option>
+
+			 <option value="P1">Property Address Request</option>
+
+			 <option value="PR">Property Records Request</option>
+
+			 <option value="RL">RP Letter  Determination</option>
+
+			 <option value="CR">Real Property Compliance</option>
+
+			 <option value="LR">Registered Contractor License</option>
+
+			 <option value="11">Request for Service</option>
+
+			 <option value="B1">Residential1and2Family</option>
+
+			 <option value="B3">ResidentialMultiFamily</option>
+
+			 <option value="CP">Resource Protection Compliance</option>
+
+			 <option value="BW">Right of Way</option>
+
+			 <option value="BS">Signs</option>
+
+			 <option value="CX">Solid Waste</option>
+
+			 <option value="BI">Specialty Installation</option>
+
+			 <option value="AF">State Funding Program</option>
+
+			 <option value="SW">Storm Water</option>
+
+			 <option value="ZS">Street Naming and Addressing</option>
+
+			 <option value="BK">Tanks</option>
+
+			 <option value="B4">Temp Certificate of Occupancy</option>
+
+			 <option value="TA">Time and Activity Tracking</option>
+
+			 <option value="RT">Tree Permit</option>
+
+			 <option value="CU">Unfit  Unsafe Structure Compliance</option>
+
+			 <option value="UE">Utilities Escrow Account</option>
+
+			 <option value="UP">Utilities Project</option>
+
+			 <option value="CO">Vacant Business Establishment</option>
+
+			 <option value="DV">Variance Waiver Determination</option>
+
+			 <option value="RW">WNCA Permit</option>
+
+			 <option value="CZ">Zoning Compliance</option>
+
+			 <option value="ZL">Zoning Letter</option>
+
+			 <option value="BZ">Zoning Only</option>
+
+         </select>
+		 </td>
+        <td align="center">
+		 <select name="SubType" id="SubType" OnChange="f_getworktype(this.value);"  class="FormDropDown" style="width:150px;">
+           <option value=""></option>
+         </select>
+		 </td>
+		 <td align="center">
+		 <select name="WorkType" id="WorkType" style="width:140px;" class="FormDropDown">
+           <option value=""></option>
+         </select>
+		  </td>
+        <td align="center">
+		 <select name="FolderStatus" id="FolderStatus" style="width:140px;" class="FormDropDown">
+           <option value=""></option>
+         </select>
+        </td>
+    </tr>
+
+
+
+    <tr class="detailData" align="center">
+                                <td align="right">PERMIT #</TD>
+                                <td colspan="3" style="padding-left:28px;"><input name="ReferenceFile" type="text" maxlength="20" id="ReferenceFile" style="width:140px;" value=""/><br/>
+								<B> OLD Permits Sample:</B> BUP2005-00851 <B> NEW Permits Sample:</B> 05 047102 00 B1 </td>
+                </tr>
+    <tr class="detailData" align="center">
+                                <td align="right">DATE RANGE</td>
+                                <td colspan="2" style="padding-left:22px;">
+        <input type=text style="width:140px;" name="IssueDate1" id="IssueDate1" OnChange="f_checkDate(this);" value=""> <input type=button   value="..." onClick="javascript:entrCalendar('document.theform.IssueDate1', document.theform.IssueDate1.value,event);" style="width:20px;">
+       <b> to</b>
+        <input type=text style="width:140px;" name="IssueDate2" id="IssueDate2" OnChange="f_checkDate(this);" value=""> <input type=button   value="..." onClick="javascript:entrCalendar('document.theform.IssueDate2', document.theform.IssueDate2.value,event);" style="width:20px;"><B>  Example: Jan 1, 2013</B>
+        </td>
+		<td align="right"><input type="button" name="btnSearch" value="Search" onClick="f_search();" id="btnSearch"/></td></tr>
+  </table>
+</td>
+    </tr>
+  </table>
+
+
+  <!-- Commented By Amita as Per request from BO Kathy and Jon Mckenzie to Protect Exempt People
+
+<hr/>
+<br/>
+<table style="width:100%;font-size:12px; color:black;" cellpadding="0" cellspacing="1" border="0">
+<tr><td style="font-size:18px; font-weight:bold">People</td></tr>
+<tr><td height="3px"></td></tr>
+<tr><td class="groupTitle">People Search</td></tr>
+<tr><td align="center">
+  <table style="width: 100%">
+    <TR class="detailData" align="center">
+                                <td align="center">ORGANIZATION NAME</td>
+                                <td align="center">FIRST NAME</td>
+                                <td align="center">LAST NAME</td>
+                                <td align="center">PHONE</td>
+    </tr>
+    <tr class="detailData">
+        <td align="Center"><input name="OrgName" type="text" maxlength="30" id="OrgName" style="width:140px;" value="" /></td>
+        <td align="Center"><input name="NameFirst" type="text" maxlength="20" id="NameFirst" style="width:140px;" value="" /></td>
+        <td align="Center"><input name="NameLast" type="text" maxlength="20" id="NameLast" style="width:140px;" value="" /></td>
+        <td align="Center"><input name="Phone" type="text" maxlength="10" id="Phone" style="width:140px;" value="" /></td>
+    </tr>
+    <tr class="detailData" align="center">
+        <td align="right" colspan="4"><input type="button" name="btnSearch" value="Search People" onClick="f_searchPeople();" id="btnSearch"/>
+    </tr>
+  </table>
+</td></tr>
+</table>
+<hr/>
+<br/>
+
+
+-->
+
+
+
+
+
+<input type="hidden" name="query" id="query" value="">
+<input type="hidden" name="FolderRSN" id="FolderRSN" value="">
+<input type="hidden" name="PeopleRSN" id="PeopleRSN" value="">
+
+
+<!-- Start New people search section ref mail from Helena dated 10/23/2013 -->
+
+</table>
+ <div id="cntr"> </div>
+
+
+</form>
+
+
+</div>
+                </div>
+    		</div>
+        </div>
+	</div>
+
+<center>
+<div style="width:951px;">
+		<hr />
+		<div  style="float:left; padding-top:2px; padding-right:10px; font-size:12px; width:20%; text-align:left;">
+                    <strong>
+                        Sarasota County, Florida <br />
+                        941-861-5000 <br />
+                        <a href="https://www.scgov.net">www.scgov.net</a>
+                    </strong>
+                </div>
+
+                <div  style="text-align:right; bottom:auto; padding-top:2px;">
+                    &copy;  2017  - Sarasota County Government
+                </div>
+
+</div>
+</center>
+</form>
+</body>
+
+<!-- End New people search section ref mail from Helena dated 10/23/2013 -->
+
+
+
+
+<script language=JavaScript>
+
+
+function counter_fn() {
+      var counter = document.getElementById("cntr");
+      var count = 0;
+      count = parseInt(counter.innerHTML);
+      count = count+1;
+      counter.innerHTML = count;
+    }
+    window.onload = counter_fn;
+
+
+function mul(FolderType)
+{
+f_getsubtype(FolderType);
+setTimeout('f_getfolderStatus()	',0100);
+}
+
+
+
+
+
+function fnExcelReport(tableid)
+{
+
+
+	var tab_text=  "<table border='2px'><tr bgcolor='#87AFC6'>";
+    var textRange; var j=0;
+    tab = document.getElementById(tableid);
+    for(j = 0 ; j < tab.rows.length ; j++)
+    {
+    tab_text=tab_text+tab.rows[j].innerHTML+"</tr>";
+    }
+    tab_text=tab_text+"</table>";
+    tab_text= tab_text.replace(/<A[^>]*>|<\/A>/g, "");
+    tab_text= tab_text.replace(/<img[^>]*>/gi,"");
+    tab_text= tab_text.replace(/<input[^>]*>|<\/input>/gi, "");
+    var ua = window.navigator.userAgent;
+    var msie = ua.indexOf("MSIE ");
+    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))
+    {
+    txtArea1.document.open("txt/html","replace");
+    txtArea1.document.write(tab_text);
+    txtArea1.document.close();
+    txtArea1.focus();
+    sa=txtArea1.document.execCommand("SaveAs",true,"SearchPermitResult.xls");
+    }
+    else
+    sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));
+    return (sa);
+}
+
+
+
+
+function f_search() {
+                if (trim(document.theform.StreetNumber.value) == ''&&trim(document.theform.StreetName.value) == ''&& trim(document.theform.PropStreetType.value) == ''  && trim(document.theform.ZipCode.value) == '' && trim(document.theform.IssueDate1.value) == '' && trim(document.theform.IssueDate2.value) == '' && trim(document.theform.ReferenceFile.value) == '' && trim(document.theform.PropertyRoll.value) == '' && trim(document.theform.SelectPermit.value) == '') {
+                alert('Please enter SEARCH CRITERIA for Permit Search');
+                                return;
+                }
+
+
+                if (document.theform.IssueDate1.value.length > 0) {
+                                if (parseDate(document.theform.IssueDate1.value)) {
+                                } else {
+                                 alert('IssueDate1 is not Date format');
+                                                return;
+                                }
+                }
+
+                if (document.theform.IssueDate2.value.length > 0) {
+                                if (parseDate(document.theform.IssueDate2.value)) {
+                                } else {
+                                                alert('IssueDate2 is not Date format');
+                                                return;
+                                }
+                }
+                //alert('Parcel id: ' + document.theform.PropertyRoll.value);
+                document.theform.query.value = 'Yes';
+                document.theform.submit();
+                document.theform.btnSearch.disabled = true;
+
+
+
+}
+
+function f_searchPeople() {
+                if (trim(document.theform.OrgName.value) == ''&&trim(document.theform.NameFirst.value) == ''&& trim(document.theform.NameLast.value) == '' && trim(document.theform.Phone.value) == '' ) {
+                                alert('Please enter SEARCH CRITERIA for People Search');
+                                return;
+                }
+                document.theform.query.value = 'PeopleSearch';
+                document.theform.submit();
+                document.theform.btnSearch.disabled = true;
+}
+
+function f_searchPeoplePermits(PeopleRSN, NameFirst, NameLast, OrganizationName, Phone) {
+//alert(PeopleRSN);
+//alert(NameFirst);
+//alert(NameLast);
+//alert(OrganizationName);
+//alert(Phone);
+                document.theform.query.value = 'PeoplePermitsSearch';
+                document.theform.PeopleRSN.value = PeopleRSN;
+                document.theform.NameFirst.value = NameFirst;
+                document.theform.NameLast.value = NameLast;
+                document.theform.OrgName.value = OrganizationName;
+                document.theform.Phone.value = Phone;
+                f_submit('SearchPermits.jsp');
+}
+
+function f_details(FolderRSN) {
+                document.theform.FolderRSN.value = FolderRSN;
+                f_submit('SearchPermits_Detail.jsp');
+}
+
+
+
+function f_getsubtype(FolderType)
+{
+g_FolderType = FolderType;
+if (FolderType== "")
+    {
+      if (navigator.appName == "Microsoft Internet Explorer")
+      {
+    	document.getElementById("SubType").outerHTML = subOuterHtml;
+
+	  } else {
+    	document.getElementById("SubType").innerHTML = subOuterHtml;
+
+      }
+	return;
+	}
+    var url = "SearchPermit_Sub_AJAX.jsp?FolderType=" + FolderType;
+    xmlHttp = createXMLHttpRequest();
+    xmlHttp.onreadystatechange = f_setsubtype;
+    xmlHttp.open('GET', url, true);
+    xmlHttp.send(null);
+    return false;
+}
+
+
+
+function f_setsubtype() {
+
+
+  if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+  {
+    var xmlDoc = xmlHttp.responseXML;
+    var resultObj = xmlDoc.getElementsByTagName("result")[0];
+    var strOption1 = "";
+	var subOption ="";
+	var delimiterPosition = 0;
+
+	if (resultObj)
+	{
+	  var result = resultObj.firstChild.nodeValue;
+      if (result == "true"){
+		subOption = xmlDoc.getElementsByTagName("subOption")[0].firstChild.nodeValue;
+		delimiterPosition = subOption.indexOf("###");
+		while (delimiterPosition > 0) {
+          strOption1 +=  '<OPTION value="' + unescape(subOption.substring(0,delimiterPosition)) + '">';
+	      subOption = subOption.substring(delimiterPosition+3);
+		  delimiterPosition = subOption.indexOf("###");
+          strOption1 +=  subOption.substring(0,delimiterPosition) + '</OPTION> ';
+	      subOption = subOption.substring(delimiterPosition+3);
+		  delimiterPosition = subOption.indexOf("###");
+        }
+ 	  }
+      if (navigator.appName == "Microsoft Internet Explorer") {
+        document.getElementById("SubType").outerHTML = '<select name="SubType" id="SubType"  OnChange="f_getworktype(this.value);" style="width:190px;"> <option value="" selected></option> ' + strOption1 + ' </select>';
+	    document.getElementById("WorkType").outerHTML = '<select name="WorkType" id="WorkType" style="width:190px;"> <option value="" selected></option> </select>';
+	  } else {
+	  document.getElementById("SubType").innerHTML = '<option value="" selected></option> ' + strOption1;
+	  document.getElementById("WorkType").innerHTML = '<option value="" selected></option>';
+	  }
+    }
+    else
+	{
+     document.getElementById("SubType").outerHTML = '<select name="SubType" id="SubType" style="width:190px;"> <option value="" selected></option> </select>';
+
+	    return;
+    }
+  }
+}
+
+
+
+function f_getworktype(SubType)
+{
+
+	if (g_FolderType == "" || SubType == "") {
+      if (navigator.appName == "Microsoft Internet Explorer") {
+  	    document.getElementById("WorkType").outerHTML = workOuterHtml;
+	  } else {
+  	    document.getElementById("WorkType").innerHTML = workOuterHtml;
+	  }
+	return;
+	}
+	var url = "SearchPermit_Work_AJAX.jsp?FolderType=" + g_FolderType + "&SubType=" + SubType;
+    xmlHttp = createXMLHttpRequest();
+    xmlHttp.onreadystatechange = f_setworktype;
+    xmlHttp.open('GET', url, true);
+    xmlHttp.send(null);
+}
+
+
+function f_setworktype()
+{
+
+  if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
+    var xmlDoc = xmlHttp.responseXML;
+    var resultObj = xmlDoc.getElementsByTagName("result")[0];
+    var strOption = "";
+	var subOption ="";
+	var delimiterPosition = 0;
+	if (resultObj) {
+	  var result = resultObj.firstChild.nodeValue;
+      if (result == "true"){
+		subOption = xmlDoc.getElementsByTagName("workOption")[0].firstChild.nodeValue;
+		delimiterPosition = subOption.indexOf("###");
+		while (delimiterPosition > 0) {
+          strOption +=  '<OPTION value="' + unescape(subOption.substring(0,delimiterPosition)) + '">';
+	      subOption = subOption.substring(delimiterPosition+3);
+		  delimiterPosition = subOption.indexOf("###");
+          strOption +=  subOption.substring(0,delimiterPosition) + '</OPTION> ';
+	      subOption = subOption.substring(delimiterPosition+3);
+		  delimiterPosition = subOption.indexOf("###");
+        }
+	  }
+      if (navigator.appName == "Microsoft Internet Explorer") {
+        document.getElementById("WorkType").outerHTML = '<select name="WorkType" id="WorkType" style="width:190px;"> <option value="" selected></option> ' + strOption + ' </select>';
+	  } else {
+        document.getElementById("WorkType").innerHTML = '<option value="" selected></option> ' + strOption;
+	  }
+	}
+  }
+}
+
+
+function f_getfolderStatus()
+{
+
+   var e = document.getElementById("SelectPermit");
+   var Status = e.options[e.selectedIndex].value;
+   //alert('ab');
+	if (Status == "") {
+      if (navigator.appName == "Microsoft Internet Explorer") {
+  	    document.getElementById("FolderStatus").outerHTML = workOuterHtml;
+	  } else {
+  	    document.getElementById("FolderStatus").innerHTML = workOuterHtml;
+	  }
+	return;
+	}
+	var url = "Permit_Status_AJAX.jsp?FolderType=" + Status ;
+    xmlHttp = createXMLHttpRequest();
+    xmlHttp.onreadystatechange =  f_setfolderstatus;
+    xmlHttp.open('GET', url, true);
+    xmlHttp.send(null);
+}
+
+
+function f_setfolderstatus()
+{
+
+   if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
+    var xmlDoc = xmlHttp.responseXML;
+    var resultObj = xmlDoc.getElementsByTagName("result")[0];
+    var strOption = "";
+	var subOption ="";
+	var delimiterPosition = 0;
+	if (resultObj) {
+	  var result = resultObj.firstChild.nodeValue;
+      if (result == "true"){
+		subOption = xmlDoc.getElementsByTagName("statusOption")[0].firstChild.nodeValue;
+		delimiterPosition = subOption.indexOf("###");
+		while (delimiterPosition > 0) {
+          strOption +=  '<OPTION value="' + unescape(subOption.substring(0,delimiterPosition)) + '">';
+	      subOption = subOption.substring(delimiterPosition+3);
+		  delimiterPosition = subOption.indexOf("###");
+          strOption +=  subOption.substring(0,delimiterPosition) + '</OPTION> ';
+	      subOption = subOption.substring(delimiterPosition+3);
+		  delimiterPosition = subOption.indexOf("###");
+        }
+	  }
+      if (navigator.appName == "Microsoft Internet Explorer") {
+        document.getElementById("FolderStatus").outerHTML = '<select name="FolderStatus" id="FolderStatus" style="width:120px;"> <option value="" selected></option> ' + strOption + ' </select>';
+	  } else {
+        document.getElementById("FolderStatus").innerHTML = '<option value="" selected></option> ' + strOption;
+	  }
+	}
+  }
+}
+
+
+
+
+</script>
+
+</html>
+
+
+
