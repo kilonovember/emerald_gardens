@@ -7,16 +7,16 @@
 #    https://shiny.posit.co/
 #
 
-tryCatch({library(shiny)}, error = function(e) { stop("Failed to load shiny: ", conditionMessage(e)) })
-tryCatch({library(shinyjs)}, error = function(e) { stop("Failed to load shinyjs: ", conditionMessage(e)) })
-tryCatch({library(tidyverse)}, error = function(e) { stop("Failed to load tidyverse: ", conditionMessage(e)) })
-tryCatch({library(gt)}, error = function(e) { stop("Failed to load gt: ", conditionMessage(e)) })
-tryCatch({library(DT)}, error = function(e) { stop("Failed to load DT: ", conditionMessage(e)) })
-tryCatch({library(scales)}, error = function(e) { stop("Failed to load scales: ", conditionMessage(e)) })
-tryCatch({library(htmltools)}, error = function(e) { stop("Failed to load htmltools: ", conditionMessage(e)) })
-tryCatch({library(plotly)}, error = function(e) { stop("Failed to load plotly: ", conditionMessage(e)) })
-tryCatch({library(shinyWidgets)}, error = function(e) { stop("Failed to load shinyWidgets: ", conditionMessage(e)) })
-tryCatch({library(leaflet)}, error = function(e) { stop("Failed to load leaflet: ", conditionMessage(e)) })
+library(shiny)
+library(shinyjs)
+library(tidyverse)
+library(gt)
+library(DT)
+library(scales)
+library(htmltools)
+library(plotly)
+library(shinyWidgets)
+library(leaflet)
 
 # Load maps ----
 assessed_pr_sqft_map <- read_rds("03_plot_files/interactive_assessed_per_sqft_map.rds") %>% event_register("plotly_click")
@@ -26,43 +26,59 @@ owner_occupied_map <- read_rds("03_plot_files/interactive_owner_occupied_map.rds
 pool_map <- read_rds("03_plot_files/interactive_pool_map.rds") %>% event_register("plotly_click")
 roof_map <- read_rds("03_plot_files/interactive_roof_map.rds") %>% event_register("plotly_click")
 
+# Load interactive just valuation dot plot
+just_valuation_dot_plot <- tryCatch({
+    # Success Path: Plot object is returned
+    readr::read_rds("03_plot_files/model_dot_plot.rds")
+}, error = function(e){
+    # Failure Path: Assigns an error object if the working plot somehow fails on the server
+    message("Error loading model_dot_plot.rds: ", conditionMessage(e))
+    ggplot2::ggplot() +
+        ggplot2::annotate("text", x = 0.5, y = 0.5,
+                          label = paste("DOT PLOT FAILED! \nError:", conditionMessage(e)),
+                          size = 5, color = "red") +
+        ggplot2::theme_void()
+})
+
+# Load interactive sales by year plot
+interactive_sales_by_year_plot <- tryCatch({
+    read_rds("03_plot_files/interactive_sales_by_year_plot.rds")
+}, error = function(e){
+    # Failure Path: Assigns an error object if the working plot somehow fails on the server
+    message("Error loading interactive_sales_by_year_plot.rds: ", conditionMessage(e))
+    ggplot2::ggplot() +
+        ggplot2::annotate("text", x = 0.5, y = 0.5,
+                          label = paste("DOT PLOT FAILED! \nError:", conditionMessage(e)),
+                          size = 5, color = "red") +
+        ggplot2::theme_void()
+})
+
+# Load data plots ----
 # Load static plots (no on-demand creation of plot) ----
-
-    just_valuation_dot_plot <- tryCatch({read_rds("03_plot_files/model_dot_plot.rds")
-    }, error = function(e){
-        message("Error loading model_dot_plot.rds: ", conditionMessage(e))
-        ggplot2::ggplot() +
-            ggplot2::annotate("text", x = 0.5, y = 0.5,
-                              label = paste("PLOT LOAD FAILED! Check Logs.\nError:", conditionMessage(e)),
-                              size = 5, color = "red") +
-            ggplot2::theme_void()
-    })
-
-    just_valuation_qq_plot <- tryCatch({read_rds("03_plot_files/q-q_residuals_plot.rds")
-    }, error = function(e){
+just_valuation_qq_plot <- tryCatch({
+    # Success Path: Plot object is returned
+    readr::read_rds("03_plot_files/q-q_residuals_plot.rds")
+}, error = function(e){
+    # Failure Path: Error plot object is returned, GUARANTEEING the variable exists
     message("Error loading just_valuation_qq_plot: ", conditionMessage(e))
     ggplot2::ggplot() +
         ggplot2::annotate("text", x = 0.5, y = 0.5,
-                          label = paste("PLOT LOAD FAILED! Check Logs.\nError:", conditionMessage(e)),
+                          label = paste("PLOT LOAD FAILED! \nError:", conditionMessage(e)),
                           size = 5, color = "red") +
         ggplot2::theme_void()
-    })
+})
 
-    just_valuation_residuals_scatter_plot <- tryCatch({read_rds("03_plot_files/residuals_scatter_plot.rds")
-    }, error = function(e){
-        message("Error loading just_valuation_residuals_scatter_plot: ", conditionMessage(e))
+just_valuation_residuals_scatter_plot <- tryCatch({
+    read_rds("03_plot_files/residuals_scatter_plot.rds")}, error = function(e){
+        # Failure Path: Error plot object is returned, GUARANTEEING the variable exists
+        message("Error loading residuals_scatter_plot.rds: ", conditionMessage(e))
         ggplot2::ggplot() +
             ggplot2::annotate("text", x = 0.5, y = 0.5,
-                              label = paste("PLOT LOAD FAILED! Check Logs.\nError:", conditionMessage(e)),
+                              label = paste("PLOT LOAD FAILED! \nError:", conditionMessage(e)),
                               size = 5, color = "red") +
             ggplot2::theme_void()
     })
 
-
-interactive_sales_by_year_plot <- read_rds("03_plot_files/interactive_sales_by_year_plot.rds")
-
-
-# Load data plots
 
 # Load data
 property_info_pages_tbl <- read_rds("02_processed_data/property_info_pages_tbl.rds")
@@ -686,39 +702,17 @@ server <- function(input, output, session) {
 
     # VALUATION TAB PLOT SERVER FUNCTIONS --- BEGIN ----
     # PLOTS ----
-    output$top_row_plot <- renderPlotly({
-        tryCatch({
-            read_rds("03_plot_files/model_dot_plot.rds")
-            }, error = function(e){
-                plot.new()
-                text(0.5, 0.5, paste("PLOT RENDER FAILED!\n", conditionMessage(e)),
-                     cex = 1.2, col = "red")
-            })
 
+    output$top_row_plot <- renderPlotly({
+        just_valuation_dot_plot
     })
 
     output$bottom_left_plot <- renderPlot({
         just_valuation_qq_plot
     })
-#
-#     output$bottom_left_plot <- renderPlot({
-#         tryCatch({
-#             read_rds("03_plot_files/q-q_residuals_plot.rds")
-#         }, error = function(e){
-#             plot.new()
-#             text(0.5, 0.5, paste("PLOT RENDER FAILED!\n", conditionMessage(e)),
-#                  cex = 1.2, col = "red")
-#         })
-#     })
 
     output$bottom_right_plot <- renderPlot({
-        tryCatch({
-            read_rds("03_plot_files/residuals_scatter_plot.rds")
-        }, error = function(e){
-            plot.new()
-            text(0.5, 0.5, paste("PLOT RENDER FAILED!\n", conditionMessage(e)),
-                 cex = 1.2, col = "red")
-        })
+        just_valuation_residuals_scatter_plot
     })
 
     output$model_summary <- renderUI({
