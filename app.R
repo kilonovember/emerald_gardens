@@ -28,7 +28,7 @@ roof_map <- read_rds("03_plot_files/interactive_roof_map.rds") %>% event_registe
 
 # Load static plots (no on-demand creation of plot) ----
 
-        just_valuation_dot_plot <- tryCatch({read_rds("03_plot_files/model_dot_plot.rds")
+    just_valuation_dot_plot <- tryCatch({read_rds("03_plot_files/model_dot_plot.rds")
     }, error = function(e){
         message("Error loading model_dot_plot.rds: ", conditionMessage(e))
         ggplot2::ggplot() +
@@ -698,14 +698,18 @@ server <- function(input, output, session) {
     })
 
     output$bottom_left_plot <- renderPlot({
-        tryCatch({
-            read_rds("03_plot_files/q-q_residuals_plot.rds")
-        }, error = function(e){
-            plot.new()
-            text(0.5, 0.5, paste("PLOT RENDER FAILED!\n", conditionMessage(e)),
-                 cex = 1.2, col = "red")
-        })
+        just_valuation_qq_plot
     })
+#
+#     output$bottom_left_plot <- renderPlot({
+#         tryCatch({
+#             read_rds("03_plot_files/q-q_residuals_plot.rds")
+#         }, error = function(e){
+#             plot.new()
+#             text(0.5, 0.5, paste("PLOT RENDER FAILED!\n", conditionMessage(e)),
+#                  cex = 1.2, col = "red")
+#         })
+#     })
 
     output$bottom_right_plot <- renderPlot({
         tryCatch({
