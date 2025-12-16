@@ -11,6 +11,8 @@ library(shiny)
 options(shiny.fullstacktrace = TRUE)
 library(shinyjs)
 library(tidyverse)
+library(MASS)
+library(ggthemes)
 library(gt)
 library(DT)
 library(scales)
@@ -770,14 +772,10 @@ server <- function(input, output, session) {
     })
 
     output$bottom_left_plot <- renderPlot({
-        library(MASS)
-        library(ggthemes)
         just_valuation_qq_plot
     })
 
     output$bottom_right_plot <- renderPlot({
-        library(MASS)
-        library(ggthemes)
         just_valuation_residuals_scatter_plot
     })
 
