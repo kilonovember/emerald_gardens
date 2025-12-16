@@ -10,10 +10,10 @@ library(htmltools)
 
 return_property_description_table <- function(account_number){
     table <- property_info_pages_tbl[property_info_pages_tbl$account == "0069020067",] %>%
-        select(property_description_block) %>%
+        dplyr::select(property_description_block) %>%
         pluck(1) %>%
         pluck(1) %>%
-        select(c(parcel_description, lot_size, zoning, sec_twp_rng, census)) %>%
+        dplyr::select(c(parcel_description, lot_size, zoning, sec_twp_rng, census)) %>%
         rename(
             .data = .,
             `Parcel Description` = parcel_description,
@@ -27,10 +27,10 @@ return_property_description_table <- function(account_number){
 
 return_buildings_info_table <- function(account_number){
     table <- property_info_pages_tbl[property_info_pages_tbl$account == account_number,] %>%
-        select(buildings_info) %>%
+        dplyr::select(buildings_info) %>%
         pluck(1) %>%
         pluck(1) %>%
-        select(c(situs_addr, gross_area, living_area, bedrooms, bathrooms, half_baths, eff_yr_built, year_built)) %>%
+        dplyr::select(c(situs_addr, gross_area, living_area, bedrooms, bathrooms, half_baths, eff_yr_built, year_built)) %>%
         mutate(across(where(is.integer), as.character)) %>%
         mutate(living_area = paste(living_area,"sq.ft.")) %>%
         mutate(gross_area = paste(gross_area, "sq.ft.")) %>%
@@ -51,10 +51,10 @@ return_buildings_info_table <- function(account_number){
 
 return_extra_features_table <- function(account_number){
     table <- property_info_pages_tbl[property_info_pages_tbl$account == account_number,] %>%
-        select(extra_features) %>%
+        dplyr::select(extra_features) %>%
         pluck(1) %>%
         pluck(1) %>%
-        select(-c(row_id, bldg_num, units_measure)) %>%
+        dplyr::select(-c(row_id, bldg_num, units_measure)) %>%
         mutate(across(where(is.integer), as.character)) %>%
         mutate(units = paste(units, "sq.ft.")) %>%
         rename(
@@ -70,7 +70,7 @@ return_extra_features_table <- function(account_number){
 
 return_assessed_value_history_table <- function(account_number){
     table <- property_info_pages_tbl[property_info_pages_tbl$account == account_number,] %>%
-    select(assessed_value_history) %>%
+    dplyr::select(assessed_value_history) %>%
     pluck(1) %>%
     pluck(1) %>%
     rename(
@@ -95,7 +95,7 @@ return_assessed_value_history_table <- function(account_number){
 
 # return_transfers_history_table <- function(account_number){
 #     table <- property_info_pages_tbl[property_info_pages_tbl$account == account_number,] %>%
-#         select(transfers) %>%
+#         dplyr::select(transfers) %>%
 #         pluck(1) %>%
 #         pluck(1) %>%
 #         rename(
@@ -127,7 +127,7 @@ return_assessed_value_history_table <- function(account_number){
 return_transfers_history_table <- function(account_number) {
     # Extract the data for the specified account
     table_data <- property_info_pages_tbl[property_info_pages_tbl$account == account_number,] %>%
-        select(transfers) %>%
+        dplyr::select(transfers) %>%
         pluck(1) %>%
         pluck(1) %>%
         rename(

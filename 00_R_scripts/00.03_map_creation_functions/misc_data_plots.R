@@ -67,7 +67,7 @@ make_lm_data_tbl <- function(){
         # Extract street address
         select(situs_addr) %>%
         mutate(addr = str_remove(situs_addr, " SARASOTA, FL, 34233")) %>%
-        select(-situs_addr) %>%
+        dplyr::select(-situs_addr) %>%
         # Add account column
         bind_cols(property_info_pages_tbl$account, .) %>%
         rename(account = `...1`)

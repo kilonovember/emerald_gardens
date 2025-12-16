@@ -49,7 +49,7 @@ make_gt_xfer_history_tbl <- function(
                    `Instrument Num`
                 )
                ) %>%
-               select(-xfer_docs_url) %>%
+               dplyr::select(-xfer_docs_url) %>%
                gt::gt() %>%
                gt::tab_header(property_info_pages_tbl[property_info_pages_tbl$account == account_num,
                                                       2][[1]][[1]]$situs_addr %>%
@@ -245,7 +245,7 @@ make_extra_features_table <- function(account_num,
         return(extra_features_table)
     }else{
         extra_features_table <- extra_features_table %>%
-            select(c(description, units, year)) %>%
+            dplyr::select(c(description, units, year)) %>%
             mutate(units = paste(as.character(units), "sq.ft.")) %>%
             rename(
                 Feature = description,
@@ -288,7 +288,7 @@ make_building_permits_tbl <- function(
                 cols_label(message = "")
         }else{
         message_tbl <- .building_permits_tbl[.building_permits_tbl$account == account_num,] %>%
-            select(-account, -Address, -Status) %>%
+            dplyr::select(-account, -Address, -Status) %>%
             arrange(desc(`Permit Date`)) %>%
             gt() %>%
             gt::tab_header(property_info_pages_tbl[property_info_pages_tbl$account == account_num,
