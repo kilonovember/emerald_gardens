@@ -26,7 +26,7 @@ if (!exists("tool_tips_tbl", envir = .GlobalEnv)) {
 
  joined_tbl <- eg_mapping_tbl %>%
      left_join(tool_tips_tbl %>%
-                   select(-geometry), by = "account") %>%
+                   dplyr::select(-geometry), by = "account") %>%
      mutate(lon = st_coordinates(eg_mapping_tbl$centroid)[,1],
             lat = st_coordinates(eg_mapping_tbl$centroid)[,2])
 
@@ -523,9 +523,9 @@ if (!exists("tool_tips_tbl", envir = .GlobalEnv)) {
      # Extracts the account and eff_yr_built columns from property_info_pages_tbl
      # and binds them into a new tibble (eff_yr_built_tbl).
      eff_yr_built_tbl <- bind_cols(property_info_pages_tbl %>%
-                                       select(account), property_info_pages_tbl$buildings_info %>%
+                                       dplyr::select(account), property_info_pages_tbl$buildings_info %>%
                                        bind_rows()) %>%
-         select(account, eff_yr_built)
+         dplyr::select(account, eff_yr_built)
 
      # Bind eff_yr_built_tbl to eg_mapping_tbl in order to color lots by effective year built
      eyb_eg_mapping_tbl <- eg_mapping_tbl %>%
@@ -555,7 +555,7 @@ if (!exists("tool_tips_tbl", envir = .GlobalEnv)) {
      # Join eg_mapping_tbl to tool_tips_tbl
      eyb_eg_mapping_tbl <- eyb_eg_mapping_tbl %>%
          left_join(tool_tips_tbl, by = "account") %>%
-         select(eff_yr_built_bin, everything())
+         dplyr::select(eff_yr_built_bin, everything())
 
      # End data prep section
 
@@ -1050,7 +1050,7 @@ if (!exists("tool_tips_tbl", envir = .GlobalEnv)) {
 
      # Eliminate columns not used for tooltip or pop-up table
      building_permits_tbl <- building_permits_tbl %>%
-         select(c(-`Permit #`, -`Permit Type`, -OCC, -Status))
+         dplyr::select(c(-`Permit #`, -`Permit Type`, -OCC, -Status))
 
 
      # Rename columns
@@ -1109,7 +1109,7 @@ if (!exists("tool_tips_tbl", envir = .GlobalEnv)) {
                              paste0("01_raw_data/", .))
 
      recent_permits <- bind_rows(Diamond_Cir, Topaz_Ct, Opal_Ct) %>%
-         select(-c(7,8)) %>%
+         dplyr::select(-c(7,8)) %>%
          rename(Work = Description, permit_date = Date) %>%
          # This data does not include an account column
          # The following call to mutate() creates an Address column
@@ -1128,12 +1128,12 @@ if (!exists("tool_tips_tbl", envir = .GlobalEnv)) {
          filter(Status == "Closed - Complete")
 
      eg_mapping_tbl <- read_rds("02_processed_data/eg_mapping_tbl.rds") %>%
-         select(account, street_num, street_name) %>%
+         dplyr::select(account, street_num, street_name) %>%
          sf::st_drop_geometry() %>%
          mutate(join_column = str_to_title(paste(street_num, street_name)))
 
      recent_permits <- left_join(recent_permits, eg_mapping_tbl, by = "join_column") %>%
-         select(-c(
+         dplyr::select(-c(
              street_number,
              `Record Number`,
              `Record Type`,
@@ -1144,7 +1144,7 @@ if (!exists("tool_tips_tbl", envir = .GlobalEnv)) {
              `Project Name`,
              Status)
          ) %>%
-         select(account, everything())
+         dplyr::select(account, everything())
 
      return(recent_permits)
  }
@@ -1166,7 +1166,7 @@ if (!exists("tool_tips_tbl", envir = .GlobalEnv)) {
 
  create_reroofed_houses_tbl <- function(){
      reroofed_houses_tbl <- create_building_permit_history_tbl() %>%
-         select(-join_column) %>%
+         dplyr::select(-join_column) %>%
          mutate(Address = str_to_title(Address)) %>%
          filter(re_roof == TRUE) %>%
          group_by(account) %>%
@@ -1191,7 +1191,7 @@ if (!exists("tool_tips_tbl", envir = .GlobalEnv)) {
          property_permit_history_DT <- building_permit_history_tbl %>%
              filter(account == account_num) %>%
              arrange(desc(permit_date)) %>%
-             select(-c(Address, join_column, re_roof)) %>%
+             dplyr::select(-c(Address, join_column, re_roof)) %>%
              DT::datatable(
                  .,
                  caption = htmltools::tags$caption(
@@ -1250,7 +1250,7 @@ if (!exists("tool_tips_tbl", envir = .GlobalEnv)) {
      building_permits_mapping_tibble <- left_join(map_tbl,
                                                   building_permits_tbl,
                                                   by = "account") %>%
-         select(account, street_num, permit_date, tooltip, datatable, centroid, geometry)
+         dplyr::select(account, street_num, permit_date, tooltip, datatable, centroid, geometry)
 
      # Create bin column for grouping roof replacement periods
      building_permits_mapping_tibble <- building_permits_mapping_tibble %>%

@@ -39,7 +39,7 @@ if(!exists("property_info_pages_tbl", envir = .GlobalEnv)){
 make_latest_assessments_tbl <- function(){
     latest_assessments_tbl <- property_info_pages_tbl %>%
         mutate(first_assessment = map(assessed_value_history, ~ .x[1, ])) %>%
-        select(first_assessment) %>%
+        dplyr::select(first_assessment) %>%
         unnest(first_assessment) %>%
         bind_cols(property_info_pages_tbl$account, .) %>%
         rename(account = `...1`)
@@ -52,7 +52,7 @@ make_effective_year_built_tbl <- function(){
         bind_rows() %>%
         bind_cols(property_info_pages_tbl$account, .) %>%
         rename(account = `...1`) %>%
-        select(account, eff_yr_built)
+        dplyr::select(account, eff_yr_built)
     return(effective_year_built_tbl)
 }
 
@@ -65,7 +65,7 @@ make_lm_data_tbl <- function(){
     year_built_tbl <- property_info_pages_tbl$ownership_block %>%
         bind_rows() %>%
         # Extract street address
-        select(situs_addr) %>%
+        dplyr::select(situs_addr) %>%
         mutate(addr = str_remove(situs_addr, " SARASOTA, FL, 34233")) %>%
         dplyr::select(-situs_addr) %>%
         # Add account column
@@ -76,14 +76,14 @@ make_lm_data_tbl <- function(){
     buildings_info_tbl <- property_info_pages_tbl$buildings_info %>%
         bind_rows() %>%
         # Extract columns of interest
-        select(-c(situs_addr, bldg_num, year_built, stories))
+        dplyr::select(-c(situs_addr, bldg_num, year_built, stories))
 
     # Add lot size information
     lot_size_tbl <- property_info_pages_tbl$property_description_block %>%
         bind_rows() %>%
         bind_cols(property_info_pages_tbl$account, .) %>%
         rename(account = `...1`) %>%
-        select(account, lot_size) %>%
+        dplyr::select(account, lot_size) %>%
         mutate(
             lot_size = str_remove(lot_size, ",") %>%
                 str_remove(., " Sq.Ft.") %>%
@@ -113,7 +113,7 @@ make_lm_data_tbl <- function(){
         ~ if (is_tibble(.x) && nrow(.x) == 1  && !("bldg_num") %in% names(.x)){
             .x <- .x %>%
                 add_column("bldg_num" = 1) %>%
-                select(row_id, bldg_num, description)
+                dplyr::select(row_id, bldg_num, description)
         }else{
             .x
         }
@@ -136,8 +136,8 @@ make_lm_data_tbl <- function(){
     extra_features_tbl <- extra_features_tbl %>%
         mutate(has_pool = ifelse(description == "Swimming Pool", TRUE, FALSE)) %>%
         # Remove unwanted columns from extra_features_tbl
-        select(-c(row_id, bldg_num, units, units_measure, year)) %>%
-        select(account, everything())
+        dplyr::select(-c(row_id, bldg_num, units, units_measure, year)) %>%
+        dplyr::select(account, everything())
 
     # Select accounts with pool
     pools <- extra_features_tbl %>%
@@ -152,7 +152,7 @@ make_lm_data_tbl <- function(){
 
     # Combine pools and no_pools
     pool_tbl <- bind_rows(pools, no_pools) %>%
-        select(-description)
+        dplyr::select(-description)
 
     # Add pool column to lm_data_tbl
     lm_data_tbl <- lm_data_tbl %>%
@@ -181,7 +181,7 @@ make_lm_data_tbl <- function(){
     ) %>%
         bind_rows() %>%
         filter(year == max(year)) %>%
-        select(account, just) %>%
+        dplyr::select(account, just) %>%
         # transform just to number
         mutate(
             just = str_remove(just, ",") %>%
@@ -287,7 +287,7 @@ create_sale_history_plot <- function(account_num){
         pull(transfers) %>%
         pluck(1) %>%
         mutate(account = account_num) %>%
-        select(account, xfer_date, recorded_consideration, seller) %>%
+        dplyr::select(account, xfer_date, recorded_consideration, seller) %>%
         mutate(buyer = lag(str_to_title(seller))) %>%
         mutate(seller = str_to_title(seller)) %>%
         mutate(xfer_date = as.Date(xfer_date, "%m/%d/%Y")) %>%
@@ -297,7 +297,7 @@ create_sale_history_plot <- function(account_num){
         filter(account == account_num) %>%
         pull(ownership_block) %>%
         pluck(1) %>%
-        select(owner_1, owner_2, owner_3)
+        dplyr::select(owner_1, owner_2, owner_3)
 
     # Format current ownership
     current_ownership <-if (is.na(current_ownership$owner_3[1])) { # Check the first element of owner_3
@@ -422,9 +422,9 @@ make_sale_price_and_just_value_table <- function(){
                                         qual_code = as.character(qual_code)  # Ensures qual_code is always a character
                                     )
         )) %>%
-        select(transfers) %>%
+        dplyr::select(transfers) %>%
         unnest(transfers) %>%
-        select(account, everything()) %>%
+        dplyr::select(account, everything()) %>%
         # remove rows representing transfers which were not "arms-length"
         filter(!recorded_consideration %in% c("$0", "$100")) %>%
         # transform xfer_date to date type
@@ -432,13 +432,13 @@ make_sale_price_and_just_value_table <- function(){
         # sort by account and by xfer_date descending so that the most recent sale is first
         arrange(account, desc(xfer_date)) %>%
         mutate(xfer_year = year(xfer_date) %>% as.integer()) %>%
-        select(account, xfer_year, recorded_consideration)
+        dplyr::select(account, xfer_year, recorded_consideration)
     # make a tibble of the just value for each property corresponding to the
     # year of the most recent sale
     just_value_for_sale_yr_tbl <- property_info_pages_tbl %>%
-        select(account, assessed_value_history) %>%
+        dplyr::select(account, assessed_value_history) %>%
         unnest(assessed_value_history) %>%
-        select(account, year, just)
+        dplyr::select(account, year, just)
     # join most_recent_sale_tbl and just_value_for_sale_yr_tbl
     sales_tbl <- sales_tbl %>%
         left_join(just_value_for_sale_yr_tbl, by = c("account"= "account", "xfer_year" = "year")) %>%
@@ -533,7 +533,7 @@ create_premium_plot_column <- function(){
 generate_expected_just_range <- function(model){
     # Create a dataframe with actual and predicted values
     augmented_data <- broom::augment(model) %>%
-        bind_cols(make_lm_data_tbl() %>% select(addr), .)
+        bind_cols(make_lm_data_tbl() %>% dplyr::select(addr), .)
 
     sigma_val <- sigma(model) # Residual standard error (σ)
 
