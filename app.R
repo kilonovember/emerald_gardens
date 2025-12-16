@@ -8,9 +8,10 @@
 #
 
 library(shiny)
+options(shiny.fullstacktrace = TRUE)
 library(shinyjs)
-# library(MASS)
-# library(ggthemes)
+library(MASS)
+library(ggthemes)
 library(tidyverse)
 library(gt)
 library(DT)
