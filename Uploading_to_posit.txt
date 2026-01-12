@@ -52,7 +52,7 @@ git push
 # Select kilonovember/emerald_gardens in the Repository drop-down.
 # Select app.R in the Primary file drop-down.
 # Click the Publish button.
-#  Copy the URL for use in updating the redirect link as described below.
+# Copy the URL for use in updating the redirect link as described below.
 
 
 # Change redirect each month on http(s)://chasknell.com/emerald_gardens:
