@@ -196,7 +196,7 @@ ui <- fluidPage(
                    style = "display: flex; align-items: baseline; color: green;",
                    titlePanel("Emerald Gardens"),
                    div(style = "margin-left: 10px; font-size: 14pt; color: black;", "Sarasota County Florida"),
-                   div(style = "margin-left: 10px; font-size: 10pt; color: black;", HTML("&copy; Charles Knell, 2025"))
+                   div(style = "margin-left: 10px; font-size: 10pt; color: black;", HTML("&copy; Charles Knell, 2026"))
                )
         )
     ),
@@ -523,7 +523,7 @@ ui <- fluidPage(
                               Over the past decade there have been 2 to 10 sales annually.
                               This data will be updated monthly. The HOA and Government information will be
                               updated after each election or when a significant change comes to my attention."),
-                       tags$p("Charles Knell, December 11, 2025")
+                       tags$p("Charles Knell, January 12, 2026")
                 ),
              )
         )
