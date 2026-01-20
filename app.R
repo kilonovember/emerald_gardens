@@ -21,6 +21,9 @@ library(plotly)
 library(shinyWidgets)
 library(leaflet)
 
+# Debug
+options(shiny.sanitize.errors = FALSE)
+
 # Load maps ----
 assessed_pr_sqft_map <- tryCatch({
     read_rds("03_plot_files/interactive_assessed_per_sqft_map.rds") %>%
