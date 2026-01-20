@@ -84,6 +84,7 @@ https://server177.web-hosting.com:2083/cpsess3671497520/frontend/jupiter/mime/re
 # Delete existing and create new using the GUID for this month's Posit URL
 
 # Monthly history for Emerald Gardens Shiny app URLs
+https://019bb39f-752a-4294-39dc-6bb9e2f39e2e.share.connect.posit.cloud/  -- January 2026
 https://019b27ba-152a-66c0-d385-b9ceaa8f8f6c.share.connect.posit.cloud/  -- December 2025
 https://019a73ad-d0f1-d62b-3e01-d86a69bb5d4c.share.connect.posit.cloud/  -- November 2025
 https://0199ed91-4e4c-da96-de0f-1692461dcb8e.share.connect.posit.cloud/  -- October 2025

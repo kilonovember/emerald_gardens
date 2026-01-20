@@ -1,7 +1,7 @@
 # Emerald Gardens v.4.0
 # This is a Shiny web application. You can run the application by clicking
 # the 'Run App' button above.
-#
+#  ~/datascience/emerald_gardens/app.R
 # Find out more about building applications with Shiny here:
 #
 #    https://shiny.posit.co/
@@ -772,11 +772,13 @@ server <- function(input, output, session) {
     })
 
     output$bottom_left_plot <- renderPlot({
-        just_valuation_qq_plot
+        p <- just_valuation_qq_plot
+        print(p)
     })
 
     output$bottom_right_plot <- renderPlot({
-        just_valuation_residuals_scatter_plot
+        p <- just_valuation_residuals_scatter_plot
+        print(p)
     })
 
     output$model_summary <- renderUI({
