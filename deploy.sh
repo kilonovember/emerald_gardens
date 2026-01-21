@@ -19,6 +19,6 @@ echo "Committing with message: $1"
 git commit -m "$1"
 
 echo "Pushing to GitHub..."
-git push origin main  # Change 'main' to 'master' if your branch uses the old naming
+git push origin master  # Change 'main' to 'master' if your branch uses the old naming
 
 echo "Done!"
