@@ -751,59 +751,122 @@ create_summary_table_HTML <- function(model){
 }
 
 # Q-Q Plot of residuals to check for gaussian distribution ----
+
 create_q_q_plot_of_residuals <- function(model){
 
-    # Use residuals for rlm (rstandard doesn't work for rlm)
-    residuals <- if ("rlm" %in% class(model)) {
+    # 1. Calculate residuals
+    res_vals <- if ("rlm" %in% class(model)) {
         residuals(model) / model$s
     } else {
         rstandard(model)
     }
 
-    Q_Q_plot <- ggplot() +
-        geom_qq(
-            aes(sample = residuals),
-            geom = "point",
-            shape = 16,
-            size = 3,
-            color = "black",
-            alpha = 0.5) +
-        geom_abline(color = "red") +  # Adds reference line for normality
+    # 2. MANUALLY calculate QQ points (Theoretical vs Sample)
+    res_sorted <- sort(as.numeric(res_vals))
+    n <- length(res_sorted)
+    theoretical_quantiles <- qnorm(ppoints(n))
+
+    plot_df <- tibble::tibble(
+        theoretical = theoretical_quantiles,
+        sample = res_sorted
+    )
+
+    # 3. Build the plot
+    Q_Q_plot <- ggplot(data = plot_df, aes(x = theoretical, y = sample)) +
+        geom_point(shape = 16, size = 3, color = "black", alpha = 0.5) +
+        geom_abline(intercept = 0, slope = sd(res_vals), color = "red") +
         labs(
             title = "Q-Q Plot",
-            subtitle = "Comparing Model Residuals to a Normal Distribution",
+            subtitle = "Residuals vs Normal Distribution",
             x = "\nTheoretical Quantiles",
-            y = "Sample Quantiles\n") +
+            y = "Sample Quantiles\n"
+        ) +
         scale_y_continuous(labels = scales::label_dollar()) +
         ggthemes::theme_economist() +
-        theme(plot.title = element_text(margin = margin(b = 5))
-        )
+        theme(plot.title = element_text(margin = margin(b = 5)))
+
+    # 4. Strip the environment to force the data into the RDS
+    Q_Q_plot$plot_env <- emptyenv()
 
     return(Q_Q_plot)
 }
 
+# create_q_q_plot_of_residuals <- function(model){
+#
+#     # Use residuals for rlm (rstandard doesn't work for rlm)
+#     residuals <- if ("rlm" %in% class(model)) {
+#         residuals(model) / model$s
+#     } else {
+#         rstandard(model)
+#     }
+#
+#     plot_df <- tibble::tibble(res = as.numeric(res_vals))
+#
+#     Q_Q_plot <- ggplot(data = plot_df) +
+#         geom_qq(
+#             aes(sample = res),
+#             geom = "point",
+#             shape = 16,
+#             size = 3,
+#             color = "black",
+#             alpha = 0.5) +
+#         geom_abline(color = "red") +  # Adds reference line for normality
+#         labs(
+#             title = "Q-Q Plot",
+#             subtitle = "Comparing Model Residuals to a Normal Distribution",
+#             x = "\nTheoretical Quantiles",
+#             y = "Sample Quantiles\n") +
+#         scale_y_continuous(labels = scales::label_dollar()) +
+#         ggthemes::theme_economist() +
+#         theme(plot.title = element_text(margin = margin(b = 5))
+#         )
+#
+#     return(Q_Q_plot)
+# }
+
 # Extract and plot residuals
+
 extract_and_plot_resids <- function(model){
-    residuals_vec <-  residuals(model)
-    # Select data
-    data_tbl <- make_lm_data_tbl()
-    resid_plot <- ggplot(data = data_tbl, aes(x = fitted(model), y = resid(model))) +
+    # 1. Create a specific data frame for THIS plot
+    # This 'bakes' the fitted and residual values into the object
+    plot_df <- tibble::tibble(
+        fitted_vals = as.numeric(fitted(model)),
+        residuals = as.numeric(resid(model))
+    )
+
+    # 2. Use the data frame in the plot
+    resid_plot <- ggplot(data = plot_df, aes(x = fitted_vals, y = residuals)) +
         geom_point() +
         geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
-        labs(x = "Fitted Values",
-             y = "Residuals",
-             title = "Residual Plot",
-             subtitle = paste(as.character(formula(model))[2], as.character(formula(model))[1], as.character(formula(model))[3])
-             ) +
+        labs(x = "\nFitted Values", y = "Residuals\n", title = "Residual Plot") +
         scale_x_continuous(labels = scales::label_dollar()) +
         scale_y_continuous(labels = scales::label_dollar()) +
-        ylab("Residuals\n") +
-        xlab("\nFitted Values") +
-        ggthemes::theme_economist() +
-        theme(plot.title = element_text(margin = margin(b = 5)))
+        ggthemes::theme_economist()
 
     return(resid_plot)
 }
+
+# extract_and_plot_resids <- function(model){
+#     residuals_vec <-  residuals(model)
+#     # Select data
+#     data_tbl <- make_lm_data_tbl()
+#     resid_plot <- ggplot(data = data_tbl, aes(x = fitted(model), y = resid(model))) +
+#         geom_point() +
+#         geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+#         labs(x = "Fitted Values",
+#              y = "Residuals",
+#              title = "Residual Plot",
+#              subtitle = paste(as.character(formula(model))[2], as.character(formula(model))[1], as.character(formula(model))[3])
+#              ) +
+#         scale_x_continuous(labels = scales::label_dollar()) +
+#         scale_y_continuous(labels = scales::label_dollar()) +
+#         ylab("Residuals\n") +
+#         xlab("\nFitted Values") +
+#         ggthemes::theme_economist() +
+#         theme(plot.title = element_text(margin = margin(b = 5)))
+#
+#     return(resid_plot)
+# }
 
  # Statistical tests of models
  # After running these tests the most useful model is glm_4a_log
