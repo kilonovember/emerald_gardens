@@ -782,7 +782,8 @@ create_q_q_plot_of_residuals <- function(model){
             y = "Sample Quantiles\n"
         ) +
         scale_y_continuous(labels = scales::label_dollar()) +
-        ggthemes::theme_economist() +
+#        ggthemes::theme_economist() +
+        theme_minimal() +
         theme(plot.title = element_text(margin = margin(b = 5)))
 
     # 4. Strip the environment to force the data into the RDS
