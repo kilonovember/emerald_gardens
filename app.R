@@ -7,6 +7,8 @@
 #    https://shiny.posit.co/
 #
 
+### GLOBAL
+
 library(shiny)
 options(shiny.fullstacktrace = TRUE)
 library(shinyjs)
@@ -24,73 +26,111 @@ library(leaflet)
 # Debug
 options(shiny.sanitize.errors = FALSE)
 
+# 1. Load the data bundle once at startup
+# This replaces both of your large tryCatch blocks
+diag_bundle <- tryCatch({
+    readRDS("03_plot_files/model_diagnostics.rds")
+}, error = function(e) {
+    message("Data bundle load failed: ", conditionMessage(e))
+    NULL # Return NULL so we can handle the error in the plot functions
+})
+
+# 2. Add the "Reader" functions here (Global space)
+# These turn the data into visuals on-demand
+render_diagnostic_qq <- function(bundle) {
+    if (is.null(bundle)) return(ggplot() +
+                                    annotate("text", label="Data Missing", x=0.5, y=0.5) +
+                                    theme_void())
+
+    ggplot(bundle$qq, aes(x = theoretical, y = sample)) +
+        geom_point(alpha = 0.5, shape = 16, size = 3) +
+        geom_abline(intercept = 0, slope = bundle$qq$slope[1], color = "red") +
+        scale_y_continuous(labels = scales::label_dollar()) +
+        theme_economist() +
+        labs(title = "Q-Q Plot", subtitle = "Residuals vs Normal Distribution")
+}
+
+render_diagnostic_scatter <- function(bundle) {
+    if (is.null(bundle)) return(ggplot() +
+                                    annotate("text", label="Data Missing", x=0.5, y=0.5) +
+                                    theme_void())
+
+    ggplot(bundle$scatter, aes(x = fitted, y = residuals)) +
+        geom_point(alpha = 0.5, shape = 16, size = 3) +
+        geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+        scale_x_continuous(labels = scales::label_dollar()) +
+        scale_y_continuous(labels = scales::label_dollar()) +
+        theme_economist() +
+        labs(title = "Residual Plot", subtitle = bundle$formula_label)
+}
+
 # Load maps ----
 assessed_pr_sqft_map <- tryCatch({
     read_rds("03_plot_files/interactive_assessed_per_sqft_map.rds") %>%
         event_register("plotly_click")
-    }, error = function(e){
-        message("Error loading interactive_assessed_per_sqft_map: ", conditionMessage(e))
-        ggplot2::ggplot() +
-            ggplot2::annotate("text", x = 0.5, y = 0.5,
-                              label = paste("MAP LOAD CRASH! \nError:", conditionMessage(e)),
-                              size = 5, color = "red") +
-            ggplot2::theme_void()
+}, error = function(e){
+    message("Error loading interactive_assessed_per_sqft_map: ", conditionMessage(e))
+    ggplot2::ggplot() +
+        ggplot2::annotate("text", x = 0.5, y = 0.5,
+                          label = paste("MAP LOAD CRASH! \nError:", conditionMessage(e)),
+                          size = 5, color = "red") +
+        ggplot2::theme_void()
 })
 
 effective_year_built_map <- tryCatch({
     read_rds("03_plot_files/interactive_effective_year_built_map.rds") %>%
         event_register("plotly_click")
-    }, error = function(e){
-        message("Error loading interactive_effective_year_built_map: ", conditionMessage(e))
-        ggplot2::ggplot() +
-            ggplot2::annotate("text", x = 0.5, y = 0.5,
-                              label = paste("MAP LOAD CRASH! \nError:", conditionMessage(e)),
-                              size = 5, color = "red") +
-            ggplot2::theme_void()
+}, error = function(e){
+    message("Error loading interactive_effective_year_built_map: ", conditionMessage(e))
+    ggplot2::ggplot() +
+        ggplot2::annotate("text", x = 0.5, y = 0.5,
+                          label = paste("MAP LOAD CRASH! \nError:", conditionMessage(e)),
+                          size = 5, color = "red") +
+        ggplot2::theme_void()
 })
 
 last_sale_map <- tryCatch({read_rds("03_plot_files/interactive_last_sale_map.rds") %>%
         event_register("plotly_click")
-    }, error = function(e){
-        message("Error loading interactive_last_sale_map: ", conditionMessage(e))
-        ggplot2::ggplot() +
-            ggplot2::annotate("text", x = 0.5, y = 0.5,
-                              label = paste("MAP LOAD CRASH! \nError:", conditionMessage(e)),
-                              size = 5, color = "red") +
-            ggplot2::theme_void()
+}, error = function(e){
+    message("Error loading interactive_last_sale_map: ", conditionMessage(e))
+    ggplot2::ggplot() +
+        ggplot2::annotate("text", x = 0.5, y = 0.5,
+                          label = paste("MAP LOAD CRASH! \nError:", conditionMessage(e)),
+                          size = 5, color = "red") +
+        ggplot2::theme_void()
 })
 
 owner_occupied_map <- tryCatch({read_rds("03_plot_files/interactive_owner_occupied_map.rds") %>%
         event_register("plotly_click")
-    }, error = function(e){
-        message("Error loading interactive_owner_occupied_map: ", conditionMessage(e))
-        ggplot2::ggplot() +
-            ggplot2::annotate("text", x = 0.5, y = 0.5,
-                              label = paste("MAP LOAD CRASH! \nError:", conditionMessage(e)),
-                              size = 5, color = "red") +
-            ggplot2::theme_void()
+}, error = function(e){
+    message("Error loading interactive_owner_occupied_map: ", conditionMessage(e))
+    ggplot2::ggplot() +
+        ggplot2::annotate("text", x = 0.5, y = 0.5,
+                          label = paste("MAP LOAD CRASH! \nError:", conditionMessage(e)),
+                          size = 5, color = "red") +
+        ggplot2::theme_void()
 })
 
 pool_map <- tryCatch({read_rds("03_plot_files/interactive_pool_map.rds") %>%
-    event_register("plotly_click")
-    }, error = function(e){
-        message("Error loading interactive_pool_map: ", conditionMessage(e))
-        ggplot2::ggplot() +
-            ggplot2::annotate("text", x = 0.5, y = 0.5,
-                              label = paste("MAP LOAD CRASH! \nError:", conditionMessage(e)),
-                              size = 5, color = "red") +
-            ggplot2::theme_void()
+        event_register("plotly_click")
+}, error = function(e){
+    message("Error loading interactive_pool_map: ", conditionMessage(e))
+    ggplot2::ggplot() +
+        ggplot2::annotate("text", x = 0.5, y = 0.5,
+                          label = paste("MAP LOAD CRASH! \nError:", conditionMessage(e)),
+                          size = 5, color = "red") +
+        ggplot2::theme_void()
 })
 
 roof_map <- tryCatch({read_rds("03_plot_files/interactive_roof_map.rds") %>%
         event_register("plotly_click")
-    }, error = function(e){
-        message("Error loading interactive_pool_map: ", conditionMessage(e))
-        ggplot2::ggplot() +
-            ggplot2::annotate("text", x = 0.5, y = 0.5,
-                              label = paste("MAP LOAD CRASH! \nError:", conditionMessage(e)),
-                              size = 5, color = "red") +
-            ggplot2::theme_void()
+}, error = function(e){
+    message("Error loading interactive_pool_map: ", conditionMessage(e))
+    ggplot2::ggplot() +
+        ggplot2::annotate("text", x = 0.5, y = 0.5,
+                          label = paste("MAP LOAD CRASH! \nError:", conditionMessage(e)),
+                          size = 5, color = "red") +
+        ggplot2::theme_void()
 })
 
 # Load interactive just valuation dot plot
@@ -121,31 +161,6 @@ interactive_sales_by_year_plot <- tryCatch({
 })
 
 # Load data plots ----
-# Load static plots (no on-demand creation of plot) ----
-just_valuation_qq_plot <- tryCatch({
-    # Success Path: Plot object is returned
-    readr::read_rds("03_plot_files/q-q_residuals_plot.rds")
-}, error = function(e){
-    # Failure Path: Error plot object is returned, GUARANTEEING the variable exists
-    message("Error loading just_valuation_qq_plot: ", conditionMessage(e))
-    ggplot2::ggplot() +
-        ggplot2::annotate("text", x = 0.5, y = 0.5,
-                          label = paste("PLOT LOAD FAILED! \nError:", conditionMessage(e)),
-                          size = 5, color = "red") +
-        ggplot2::theme_void()
-})
-
-just_valuation_residuals_scatter_plot <- tryCatch({
-    read_rds("03_plot_files/residuals_scatter_plot.rds")}, error = function(e){
-        # Failure Path: Error plot object is returned, GUARANTEEING the variable exists
-        message("Error loading residuals_scatter_plot.rds: ", conditionMessage(e))
-        ggplot2::ggplot() +
-            ggplot2::annotate("text", x = 0.5, y = 0.5,
-                              label = paste("PLOT LOAD FAILED! \nError:", conditionMessage(e)),
-                              size = 5, color = "red") +
-            ggplot2::theme_void()
-    })
-
 
 # Load data
 property_info_pages_tbl <- read_rds("02_processed_data/property_info_pages_tbl.rds")
@@ -364,7 +379,7 @@ ui <- fluidPage(
                             });
                           });
                     ")
-                ),
+            ),
 
             # Optional CSS for the button
             tags$style(HTML("
@@ -417,7 +432,7 @@ ui <- fluidPage(
                                uiOutput("expected_just_cards")
                         ),
                         column(8,
-                              uiOutput("just_value_estimation")
+                               uiOutput("just_value_estimation")
                         )
                     )
                 )
@@ -481,7 +496,7 @@ ui <- fluidPage(
                                          style = "width: 100px; font-size: 16px; font-weight: bold;
                                          background-color: #B3EE3A",
                                          class = "colored-button"))
-                        ),
+                    ),
                     width = 2
                 ),
                 mainPanel(
@@ -489,7 +504,7 @@ ui <- fluidPage(
                 )
             )
         ),
-       #  ABOUT THIS SITE ----
+        #  ABOUT THIS SITE ----
         tabPanel(
             title = "About This Site",
             fluidRow(
@@ -507,7 +522,7 @@ ui <- fluidPage(
                        tags$div(
                            tags$p("Emerald Gardens Information and Analysis Web Site",
                                   style = "font-size: 40px; color: green;")
-                        ),
+                       ),
                        tags$p("I engineered this web site as an exercise in data gathering, transformation,
                               analysis and presentation. All the information presented here is from publicly-available
                               data, mainly from the Sarasota County Property Appraiser's web site."),
@@ -528,7 +543,7 @@ ui <- fluidPage(
                               updated after each election or when a significant change comes to my attention."),
                        tags$p("Charles Knell, January 12, 2026")
                 ),
-             )
+            )
         )
     )
 )
@@ -644,19 +659,19 @@ server <- function(input, output, session) {
 
                 showModal(modalDialog(
                     HTML(modal_content)
-                    )
+                )
                 )
             }else if(inherits(modal_content, "datatables")){
                 showModal(modalDialog(
-                            DT::dataTableOutput("modal_dt")
-                        )
+                    DT::dataTableOutput("modal_dt")
+                )
                 )
                 output$modal_dt <- DT::renderDataTable({
                     modal_content
                 })
             }
         }
-})
+    })
 
 
     # MAPS PANEL SERVER FUNCTIONS --- END ----
@@ -699,22 +714,22 @@ server <- function(input, output, session) {
                     )
                 )
             ) %>%
-            formatCurrency(
-                columns = c("Lot Size (sq.ft.)", "House Size (sq.ft.)"),
-                currency = "",
-                digits = 0,
-                mark = ","
-            ) %>%
-            formatCurrency(
-                columns = "Recorded Consideration",
-                currency = "$",
-                digits = 0,
-                mark = ","
-            )
-        return(dt)
+                formatCurrency(
+                    columns = c("Lot Size (sq.ft.)", "House Size (sq.ft.)"),
+                    currency = "",
+                    digits = 0,
+                    mark = ","
+                ) %>%
+                formatCurrency(
+                    columns = "Recorded Consideration",
+                    currency = "$",
+                    digits = 0,
+                    mark = ","
+                )
+            return(dt)
         }else{
             # Display a message when no data is available
-             no_data_message <- data.frame(Message = "No data available for the selected filter.")
+            no_data_message <- data.frame(Message = "No data available for the selected filter.")
             return(DT::datatable(no_data_message, options = list(dom = 't'), selection = 'none'))
         }
     })
@@ -774,15 +789,23 @@ server <- function(input, output, session) {
         just_valuation_dot_plot
     })
 
-    output$bottom_left_plot <- renderPlot({
-        p <- just_valuation_qq_plot
-        print(p)
+    output$bottom_right_plot <- renderPlot({
+        render_diagnostic_qq(diag_bundle)
     })
 
-    output$bottom_right_plot <- renderPlot({
-        p <- just_valuation_residuals_scatter_plot
-        print(p)
+    output$bottom_left_plot <- renderPlot({
+        render_diagnostic_scatter(diag_bundle)
     })
+
+    # output$bottom_left_plot <- renderPlot({
+    #     p <- just_valuation_qq_plot
+    #     print(p)
+    # })
+    #
+    # output$bottom_right_plot <- renderPlot({
+    #     p <- just_valuation_residuals_scatter_plot
+    #     print(p)
+    # })
 
     output$model_summary <- renderUI({
         HTML(create_summary_table_HTML(create_glm_4a_log()))
@@ -811,12 +834,12 @@ server <- function(input, output, session) {
             size = "l",
             title = "Residuals Plot",
             HTML(read_file("03_plot_files/residuals_scatter_plot_explanation_chatgpt.html"))
-            )
+        )
         )
     })
 
     observeEvent(input$summary, {
-       # print("summary clicked")
+        # print("summary clicked")
         showModal(modalDialog(
             size = "l",
             title = "Summary",
@@ -1015,7 +1038,7 @@ server <- function(input, output, session) {
 
     # Function to display Just Value explanation ----
     output$just_value_estimation <- renderUI({
-                html_content <- paste(readLines("03_plot_files/just_value_estimation_explanation.html"), collapse = "\n")
+        html_content <- paste(readLines("03_plot_files/just_value_estimation_explanation.html"), collapse = "\n")
         HTML(html_content)
     })
 
@@ -1085,26 +1108,26 @@ server <- function(input, output, session) {
 
     # Observe the house address selection and extract the account number ----
     observeEvent(input$house_address_sh, {
-    tryCatch({
-        account_num <- property_info_pages_tbl[[2]] %>%
-            bind_rows() %>%
-            mutate(account = property_info_pages_tbl$account,
-                   street_addr = str_remove(.$situs_addr, " SARASOTA, FL, 34233"),
-                   street_name = str_extract(
-                       string = street_addr,
-                       pattern = "DIAMOND CIR W|DIAMOND CIR E|DIAMOND CIR N|DIAMOND CIR S|TOPAZ CT|OPAL CT"
-                   ),
-                   house_num = str_extract(string = street_addr, pattern = "^\\d{4}") %>% as.numeric(),
-                   `Street Address` = paste(house_num, street_name)
-            ) %>%
-            arrange(., street_name, house_num) %>%
-            filter(street_addr == input$house_address_sh) %>%
-            select(account) %>%
-            pull()
-    }, error = function(e) {
-        cat("Error in bind_rows() for Sales History extract account number.\n")
-        cat(conditionMessage(e), "\n")
-    })
+        tryCatch({
+            account_num <- property_info_pages_tbl[[2]] %>%
+                bind_rows() %>%
+                mutate(account = property_info_pages_tbl$account,
+                       street_addr = str_remove(.$situs_addr, " SARASOTA, FL, 34233"),
+                       street_name = str_extract(
+                           string = street_addr,
+                           pattern = "DIAMOND CIR W|DIAMOND CIR E|DIAMOND CIR N|DIAMOND CIR S|TOPAZ CT|OPAL CT"
+                       ),
+                       house_num = str_extract(string = street_addr, pattern = "^\\d{4}") %>% as.numeric(),
+                       `Street Address` = paste(house_num, street_name)
+                ) %>%
+                arrange(., street_name, house_num) %>%
+                filter(street_addr == input$house_address_sh) %>%
+                select(account) %>%
+                pull()
+        }, error = function(e) {
+            cat("Error in bind_rows() for Sales History extract account number.\n")
+            cat(conditionMessage(e), "\n")
+        })
 
 
         rv_selected_house_address_sh$selected_house_address_sh <- input$house_address_sh
@@ -1187,14 +1210,14 @@ server <- function(input, output, session) {
                            tags$a(href = "https://www.sarasotaclerk.com/",
                                   target = "_blank", "Click here")),
                     tags$p(tags$strong("Sarasota County Property Appraiser"),
-                                      tags$a(href = "https://www.sc-pa.com/",
-                                             target = "_blank", "Click here")),
+                           tags$a(href = "https://www.sc-pa.com/",
+                                  target = "_blank", "Click here")),
                     tags$p(tags$strong("Sarasota County Building Permits"),
                            tags$a(href = "https://www.scgov.net/government/planning-and-development-services/online-permitting",
-                                                                      target = "_blank", "Click here")),
+                                  target = "_blank", "Click here")),
                     tags$p(tags$strong("Sarasota County Trash and Recycling"),
                            tags$a(href = "https://www.scgov.net/government/solid-waste/trash-and-recycling",
-                                                                         target = "_blank", "Click here"))
+                                  target = "_blank", "Click here"))
                 )
             )
         } else if (button_clicked == "state_button") {
@@ -1242,7 +1265,7 @@ server <- function(input, output, session) {
                            tags$p("(800) 621-3362"),
                            tags$p("Web site:", tags$a(href = "https://www.fema.gov/",target = "_blank", "Click here"))
                     )
-                 )
+                )
             )
         }
     })
